@@ -72,6 +72,7 @@ endmodule
 
 // Instruction MEMORY
 module IM(
+	input IREQ, 
 	input [29:0] IADDR,
 	output [31:0] INSTR
 );
@@ -81,7 +82,7 @@ initial begin
 	$readmemh("inst.hex", InstMem);
 end
 
-assign INSTR = InstMem[IADDR];
+assign INSTR = IREQ ? InstMem[IADDR] : 32'b0;
 endmodule
 
 /*
