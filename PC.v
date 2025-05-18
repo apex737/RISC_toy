@@ -1,0 +1,10 @@
+module PC(
+	input PCWrite, CLK, RSTN,
+	input [31:0] NextPC,
+	output [29:0] IADDR
+);
+always@(posedge CLK or negedge RSTN) begin
+	if(~RSTN) NextPC <= 0;
+	else if (PCWrite) IADDR <= NextPC[31:2];
+end
+endmodule

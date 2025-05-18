@@ -70,8 +70,19 @@ module REGFILE #(parameter AW = 5, ENTRY = 32) (
 
 endmodule
 
+// Instruction MEMORY
+module IM(
+	input [29:0] IADDR,
+	output [31:0] INSTR
+);
+// parameter DataSize, MemSize
+reg [31:0] InstMem [0:23];
+initial begin
+	$readmemh("inst.hex", InstMem);
+end
 
-
+assign INSTR = InstMem[IADDR];
+endmodule
 
 /*
     SINGLE-PORT SYNCHRONOUS MEMORY MODEL
