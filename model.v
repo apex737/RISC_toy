@@ -27,46 +27,30 @@
 */
 
 module REGFILE #(parameter AW = 5, ENTRY = 32) (
-    input    wire                CLK, 
-    input    wire                RSTN,	 // RESET (ACTIVE LOW)
-
-    // WRITE PORT
-    input    wire                WEN,    // WRITE ENABLE (ACTIVE LOW)
-    input    wire    [AW-1:0]    WA,     // WRITE ADDRESS
-    input    wire    [31:0]      DI,     // DATA INPUT
-
-    // READ PORT
-    input    wire    [AW-1:0]    RA0,    // READ ADDRESS 0
-    input    wire    [AW-1:0]    RA1,    // READ ADDRESS 1
-    output   wire    [31:0]      DOUT0,  // DATA OUTPUT 0
-    output   wire    [31:0]      DOUT1   // DATA OUTPUT 1
+    input CLK, RSTN, WEN
+    input [31:0] DI, 
+    input [AW-1:0] RA0, RA1, WA,
+    output [31:0] DOUT0, DOUT1
 );
-
-    parameter    ATIME    = 1;			//READ DELAY
-
-    reg        [31:0]        ram[0:ENTRY-1];
-
-    always @ (posedge CLK or negedge RSTN)
+    parameter ATIME = 1; //READ DELAY
+    reg [31:0] ram[0:ENTRY-1];
+    always@(posedge CLK or negedge RSTN)
     begin
         if(~RSTN)
-        begin
-            ram[0] <= 32'b0; ram[1] <= 32'b0; ram[2] <= 32'b0; ram[3] <= 32'b0;
-            ram[4] <= 32'b0; ram[5] <= 32'b0; ram[6] <= 32'b0; ram[7] <= 32'b0;
-            ram[8] <= 32'b0; ram[9] <= 32'b0; ram[10] <= 32'b0; ram[11] <= 32'b0;
-            ram[12] <= 32'b0; ram[13] <= 32'b0; ram[14] <= 32'b0; ram[15] <= 32'b0;
-            ram[16] <= 32'b0; ram[17] <= 32'b0; ram[18] <= 32'b0; ram[19] <= 32'b0;
-            ram[20] <= 32'b0; ram[21] <= 32'b0; ram[22] <= 32'b0; ram[23] <= 32'b0;
-            ram[24] <= 32'b0; ram[25] <= 32'b0; ram[26] <= 32'b0; ram[27] <= 32'b0;
-            ram[28] <= 32'b0; ram[29] <= 32'b0; ram[30] <= 32'b0; ram[31] <= 32'b0;
-        end
-        else
-        begin
-            if (~WEN)    ram[WA] <= DI;		//SYNCHRONOUS WRITE WITH NO DELAY
-        end
+					begin
+							ram[0] <= 32'b0; ram[1] <= 32'b0; ram[2] <= 32'b0; ram[3] <= 32'b0;
+							ram[4] <= 32'b0; ram[5] <= 32'b0; ram[6] <= 32'b0; ram[7] <= 32'b0;
+							ram[8] <= 32'b0; ram[9] <= 32'b0; ram[10] <= 32'b0; ram[11] <= 32'b0;
+							ram[12] <= 32'b0; ram[13] <= 32'b0; ram[14] <= 32'b0; ram[15] <= 32'b0;
+							ram[16] <= 32'b0; ram[17] <= 32'b0; ram[18] <= 32'b0; ram[19] <= 32'b0;
+							ram[20] <= 32'b0; ram[21] <= 32'b0; ram[22] <= 32'b0; ram[23] <= 32'b0;
+							ram[24] <= 32'b0; ram[25] <= 32'b0; ram[26] <= 32'b0; ram[27] <= 32'b0;
+							ram[28] <= 32'b0; ram[29] <= 32'b0; ram[30] <= 32'b0; ram[31] <= 32'b0;
+					end
+        else if (~WEN) ram[WA] <= DI; // NO DELAY SYNC WRITE 
     end
-
-    assign    #(ATIME)    DOUT0    = ram[RA0];
-    assign    #(ATIME)    DOUT1    = ram[RA1];
+    assign #(ATIME) DOUT0 = ram[RA0];
+    assign #(ATIME) DOUT1 = ram[RA1];
 
 endmodule
 
@@ -76,13 +60,13 @@ module IM(
 	input [29:0] IADDR,
 	output [31:0] INSTR
 );
-// parameter DataSize, MemSize
-reg [31:0] InstMem [0:23];
+parameter MemSize = 24;
+reg [31:0] InstMem [0:MemSize-1];
 initial begin
 	$readmemh("inst.hex", InstMem);
 end
 
-assign INSTR = IREQ ? InstMem[IADDR] : 32'b0;
+assign INSTR = IREQ ? InstMem[IADDR] : 32'b0; // 32'b0 : NOP
 endmodule
 
 /*
