@@ -27,7 +27,7 @@
 */
 
 module REGFILE #(parameter AW = 5, ENTRY = 32) (
-    input CLK, RSTN, WEN
+    input CLK, RSTN, WEN,
     input [31:0] DI, 
     input [AW-1:0] RA0, RA1, WA,
     output [31:0] DOUT0, DOUT1

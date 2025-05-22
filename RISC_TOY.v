@@ -13,22 +13,14 @@
 //  TOP MODULE
 ////////////////////////////////////
 module RISC_TOY (
-    input     wire              CLK,
-    input     wire              RSTN,
-    output    wire              IREQ,
-    output    wire    [29:0]    IADDR,
-    input     wire    [31:0]    INSTR,
-    output    wire              DREQ,
-    output    wire              DRW,
-    output    wire    [29:0]    DADDR,
-    output    wire    [31:0]    DWDATA,
-    input     wire    [31:0]    DRDATA
+    input CLK, RSTN, IREQ, DREQ, DRW,
+    output [29:0] IADDR, DADDR,
+		input [31:0] INSTR, DRDATA,
+    output [31:0] DWDATA 
 );
 
 
     // WRITE YOUR CODE
-	
-	
 
     // REGISTER FILE FOR GENRAL PURPOSE REGISTERS
     REGFILE    #(.AW(5), .ENTRY(32))    RegFile (
@@ -42,7 +34,6 @@ module RISC_TOY (
                     .DOUT0  (),
                     .DOUT1  ()
     );
-
 
     // WRITE YOUR CODE
 

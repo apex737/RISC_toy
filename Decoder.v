@@ -7,13 +7,14 @@ module decoder(
 	output [21:0] Imm22,
 	output isNOP
 );
-wire opcode = INSTR[31:27];
-wire ra = INSTR[26:22];
-wire rb = INSTR[21:17];
-wire rc = INSTR[16:12];
-wire shamt = INSTR[4:0];
-wire shSrc = INSTR[5];
-wire Imm17 = INSTR[16:0];
-wire Imm22 = INSTR[21:0];
-wire isNOP = ~(|INSTR);
+assign opcode = INSTR[31:27];
+assign ra = INSTR[26:22];
+assign rb = INSTR[21:17];
+assign rc = INSTR[16:12];
+assign shamt = INSTR[4:0];
+assign shSrc = INSTR[5];
+assign cond = INSTR[2:0];
+assign Imm17 = INSTR[16:0];
+assign Imm22 = INSTR[21:0];
+assign isNOP = ~(|INSTR);
 endmodule
