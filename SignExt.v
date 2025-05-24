@@ -1,9 +1,11 @@
-module signExt(
+module SignExt(
 	input [16:0] Imm17,
 	input [21:0] Imm22,
-	output [31:0] Iext17, Iext22, zeroExt
+	input [4:0] shamt,
+	output [31:0] Iext_D, Jext, zeroExt_D, shamtExt_D
 );
-assign zeroExt = {15'b0, Imm17};
-assign Iext17 = {{15{1'b1}}, Imm17};
-assign Iext22 = {{10{1'b1}}, Imm22};
+assign shamtExt_D = {27'b0, shamt};
+assign zeroExt_D = {15'b0, Imm17};
+assign Iext_D = {{15{1'b1}}, Imm17};
+assign Jext = {{10{1'b1}}, Imm22};
 endmodule

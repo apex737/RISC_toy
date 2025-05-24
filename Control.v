@@ -1,12 +1,12 @@
-module control(
+module Control(
 	input [4:0] opcode, rb,
-	input [2:0] cond,
-	input shSrc, isNOP,
-	output reg WEN, MemToReg, DRW, DREQ, 
-	output reg ALUSRC1, // 0: R[rb], 1: PCADD4_E
-	output reg [2:0] ALUSRC2, // 0: R[rc], 1: shamt, 2: zeroExt, 3: Iext17, 4: Jext
-	output reg [1:0] WDSRC, // 0: ALU_o, 1: ReadData, 2: PCADD4_W
-	output reg [3:0] ALUOP
+	input shSrc, 
+	output reg Sel1_D, // 0: R[rb], 1: Iext
+	output reg [2:0] Sel2_D, // 0: R[rc], 1: shamt, 2: zeroExt, 3: Iext, 4: JPC
+	output reg [1:0] SelWB_D, // 0: ALUOUT, 1: LoadData, 2: PCADD4_W
+	output reg [3:0] ALUOP_D,
+	output WEN_D, DRW_D, DREQ_D, 
+	output Jump, Branch, Store, Load_D
 );
 wire reduceRB = &rb;
 // OP Encode
@@ -15,78 +15,72 @@ parameter [4:0]
 	ANDI = 5'd6, OR = 5'd7, ORI = 5'd8, XOR = 5'd9, LSR = 5'd10, ASR = 5'd11, 
 	SHL = 5'd12, ROR = 5'd13, MOVI = 5'd14, J = 5'd15, JL = 5'd16, BR = 5'd17,
 	BRL = 5'd18, ST = 5'd19, STR = 5'd20, LD = 5'd21, LDR = 5'd22;
-// ALUSRC 
-always@* begin
-	if(isNOP) begin
-		WDSRC = 2'b00; ALUSRC2 = 3'b000; 
-		{WEN, MemToReg, DRW, DREQ, ALUSRC1} = 5'b10000;
-	end
-	else begin
-		WDSRC = 2'b00; ALUSRC2 = 3'b000;  // R-Type (R[rc])
-		{WEN, MemToReg, DRW, DREQ, ALUSRC1} = 5'b00000; // WEN : ACTIVE LOW
-		case(opcode)
-			ADDI, ANDI, ORI, MOVI: begin
-				WDSRC = 2'b00; ALUSRC2 = 3'b011; 	// Iext17
-				{WEN, MemToReg, DRW, DREQ, ALUSRC1} = 5'b00000;
-			end
-			J: begin
-				WDSRC = 2'b10; ALUSRC2 = 3'b100; 	// Iext22
-				{WEN, MemToReg, DRW, DREQ, ALUSRC1} = 5'b10001;
-			end
-			JL: begin
-				WDSRC = 2'b10; ALUSRC2 = 3'b100; 	// Iext22
-				{WEN, MemToReg, DRW, DREQ, ALUSRC1} = 5'b00001;
-			end
-			STR: begin
-				WDSRC = 2'b00; ALUSRC2 = 3'b100; 	// Iext22
-				{WEN, MemToReg, DRW, DREQ, ALUSRC1} = 5'b10111; // M[currentPC + signExt(imm22)] = R[ra];
-			end
-			LDR: begin
-				WDSRC = 2'b01; ALUSRC2 = 3'b100; 	// Iext22
-				{WEN, MemToReg, DRW, DREQ, ALUSRC1} = 5'b01011; // R[ra] = M[currentPC + signExt(imm22)];
-			end
-			LSR, ASR, SHL, ROR:	begin // shamt or R[rc]
-				WDSRC = 2'b00;
-				ALUSRC2 = shSrc ? 3'b000 : 3'b001; 
-				{WEN, MemToReg, DRW, DREQ, ALUSRC1} = 5'b00000;
-			end
-			ST: begin						// zeroExt or Iext17
-				WDSRC = 2'b00;
-				ALUSRC2 = reduceRB ? 3'b010 : 3'b011; 
-				{WEN, MemToReg, DRW, DREQ, ALUSRC1} = 5'b10110;
-			end
-			LD: begin						// zeroExt or Iext17
-				WDSRC = 2'b01;
-				ALUSRC2 = reduceRB ? 3'b010 : 3'b011; 
-				{WEN, MemToReg, DRW, DREQ, ALUSRC1} = 5'b01010;
-			end
-		endcase
-	end
-	
-end
 
-// ALUOP
+// Sel1_D, Sel2_D
 always@* begin
+	{Sel1_D, Sel2_D} = {1'b0, 3'b000};
 	case(opcode)
-		ADD, ADDI, J, JL, ST, STR: ALUOP = 4'b0000;
-		MOVI : ALUOP = 4'b0001;
-		SUB : ALUOP = 4'b0010;
-		NEG : ALUOP = 4'b0011;
-		NOT : ALUOP = 4'b0100;
-		AND, ANDI : ALUOP = 4'b0101;
-		OR, ORI : ALUOP = 4'b0110;
-		XOR : ALUOP = 4'b0111;
-		LSR : ALUOP = 4'b1000;
-		ASR : ALUOP = 4'b1001;
-		SHL : ALUOP = 4'b1010;
-		ROR : ALUOP = 4'b1011;
-		BR, BRL : begin
-			if(cond == 3'd1) ALUOP = 4'b1100; // Always
-			else if(cond == 3'd2  | cond == 3'd3 ) ALUOP = 4'b1101; // BRZero
-			else if(cond == 3'd4  | cond == 3'd5 ) ALUOP = 4'b1110; // BRSign
-			else ALUOP = 4'b1111; // Never (NOP)
+		ADDI, ORI, ANDI : {Sel1_D, Sel2_D} = {1'b0, 3'b001};
+		LSR, ASR, SHL, ROR : begin
+			Sel1_D = 1'b0;
+			Sel2_D = shSrc ? 3'b000 : 3'b010;
 		end
+		MOVI : {Sel1_D, Sel2_D} = {1'b0, 3'b010};
+		ST : {Sel1_D, Sel2_D} = reduceRB ? {1'b0, 3'b011} : {1'b1, 3'b000};
+		STR : {Sel1_D, Sel2_D} = {1'b0, 3'b100};
+		LD : {Sel1_D, Sel2_D} = reduceRB ? {1'b0, 3'b011} : {1'b0, 3'b001};
+		LDR : {Sel1_D, Sel2_D} = {1'b0, 3'b100};
 	endcase
 end
+
+// ALUOP_D
+always@* begin
+	case(opcode)
+		J, JL, BR, BRL: ALUOP_D = 4'd0; // NOP
+		ADD, ADDI : ALUOP_D = 4'd1;
+		SUB : ALUOP_D = 4'd2;
+		NEG : ALUOP_D = 4'd3;
+		NOT : ALUOP_D = 4'd4;
+		AND, ANDI : ALUOP_D = 4'd5;
+		OR, ORI : ALUOP_D = 4'd6;
+		XOR : ALUOP_D = 4'd7;
+		LSR : ALUOP_D = 4'd8;
+		ASR : ALUOP_D = 4'd9;
+		SHL : ALUOP_D = 4'd10;
+		ROR : ALUOP_D = 4'd11;
+		MOVI : ALUOP_D = 4'd12; // Buffer SRC2
+		ST : ALUOP_D = reduceRB ? 4'd12 : 4'd1;
+		STR : ALUOP_D = 4'd12;
+		LD : ALUOP_D = reduceRB ? 4'd12 : 4'd1;
+		LDR : ALUOP_D = 4'd12;
+		default: ALUOP_D = 4'd0; // NOP
+	endcase
+end
+
+// SelWB
+always@* begin
+	case(opcode)
+		LD, LDR : SelWB_D = 2'b01;
+		JL, BRL : SelWB_D = 2'b10;
+		default : SelWB_D = 2'b00;
+	endcase
+end
+
+// Ctrl Signal
+reg [2:0] Ctrl;
+assign {WEN_D, DRW_D, DREQ_D} = Ctrl;
+always@* begin
+	Ctrl = 3'b001; // RegWrite O, Mem X (Active Low)
+	case(opcode)
+		J, JL, BR, BRL: Ctrl = 3'b101; // RegWrite X, Mem X
+		ST, STR: Ctrl = 3'b110;
+		LD, LDR: Ctrl = 3'b000;
+	endcase
+end
+
+assign Jump = (opcode == J | opcode == JL);
+assign Branch = (opcode == BR | opcode == BRL);
+assign Store = DRW_D & (~DREQ_D);
+assign Load_D = (~DRW_D) & (~DREQ_D);
 endmodule
 

@@ -1,30 +1,16 @@
-D:/Download/prj1_RISC_Toy/RISC_toy/muxAluSrc2.v {1 {vlog -work work D:/Download/prj1_RISC_Toy/RISC_toy/muxAluSrc2.v
+D:/Download/prj1_RISC_Toy/RISC_toy/Control.v {1 {vlog -work work {D:\Download\prj1_RISC_Toy\RISC_toy\Control.v}
 Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
-
-} {} {}} D:/Download/prj1_RISC_Toy/RISC_toy/Decoder.v {1 {vlog -work work {D:\Download\prj1_RISC_Toy\RISC_toy\Decoder.v}
-Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
--- Compiling module decoder
+-- Compiling module Control
 
 Top level modules:
-	decoder
+	Control
 
-} {} {}} D:/Download/prj1_RISC_Toy/RISC_toy/model.v {1 {vlog -work work {D:\Download\prj1_RISC_Toy\RISC_toy\model.v}
+} {} {}} D:/Download/prj1_RISC_Toy/RISC_toy/ALU.v {1 {vlog -work work {D:\Download\prj1_RISC_Toy\RISC_toy\ALU.v}
 Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
--- Compiling module REGFILE
--- Compiling module IM
--- Compiling module SRAM
+-- Compiling module ALU
 
 Top level modules:
-	REGFILE
-	IM
-	SRAM
-
-} {} {}} D:/Download/prj1_RISC_Toy/RISC_toy/Control.v {1 {vlog -work work {D:\Download\prj1_RISC_Toy\RISC_toy\Control.v}
-Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
--- Compiling module control
-
-Top level modules:
-	control
+	ALU
 
 } {} {}} D:/Download/prj1_RISC_Toy/RISC_toy/PC.v {1 {vlog -work work {D:\Download\prj1_RISC_Toy\RISC_toy\PC.v}
 Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
@@ -33,53 +19,52 @@ Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
 Top level modules:
 	PC
 
-} {} {}} D:/Download/prj1_RISC_Toy/RISC_toy/RISC_TOY.v {1 {vlog -work work {D:\Download\prj1_RISC_Toy\RISC_toy\RISC_TOY.v}
+} {} {}} D:/Download/prj1_RISC_Toy/RISC_toy/RISC_TOY.v {0 {vlog -work work {D:\Download\prj1_RISC_Toy\RISC_toy\RISC_TOY.v}
 Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
 -- Compiling module RISC_TOY
+** Error: D:\Download\prj1_RISC_Toy\RISC_toy\RISC_TOY.v(40): (vlog-2730) Undefined variable: 'Iext_E'.
 
-Top level modules:
-	RISC_TOY
 
-} {} {}} D:/Download/prj1_RISC_Toy/RISC_toy/testbench.v {1 {vlog -work work D:/Download/prj1_RISC_Toy/RISC_toy/testbench.v
+} {4.0 5.0} {}} D:/Download/prj1_RISC_Toy/RISC_toy/Mux3.v {1 {vlog -work work {D:\Download\prj1_RISC_Toy\RISC_toy\Mux3.v}
 Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
--- Compiling module testbench
+-- Compiling module Mux3
 
 Top level modules:
-	testbench
+	Mux3
 
-} {} {}} D:/Download/prj1_RISC_Toy/RISC_toy/DE.v {1 {vlog -work work {D:\Download\prj1_RISC_Toy\RISC_toy\DE.v}
+} {} {}} D:/Download/prj1_RISC_Toy/RISC_toy/Hazard_Detection.v {1 {vlog -work work {D:\Download\prj1_RISC_Toy\RISC_toy\Hazard_Detection.v}
 Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
--- Compiling module DE
+-- Compiling module Hazard_Detection
 
 Top level modules:
-	DE
+	Hazard_Detection
 
 } {} {}} D:/Download/prj1_RISC_Toy/RISC_toy/SignExt.v {1 {vlog -work work {D:\Download\prj1_RISC_Toy\RISC_toy\SignExt.v}
 Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
--- Compiling module signExt
+-- Compiling module SignExt
 
 Top level modules:
-	signExt
+	SignExt
 
-} {} {}} D:/Download/prj1_RISC_Toy/RISC_toy/Mux_SRC1.v {1 {vlog -work work D:/Download/prj1_RISC_Toy/RISC_toy/Mux_SRC1.v
+} {} {}} D:/Download/prj1_RISC_Toy/RISC_toy/FD.v {1 {vlog -work work {D:\Download\prj1_RISC_Toy\RISC_toy\FD.v}
 Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
--- Compiling module muxSrc1
+-- Compiling module FD
 
 Top level modules:
-	muxSrc1
+	FD
 
-} {} {}} D:/Download/prj1_RISC_Toy/RISC_toy/Mux_SRC2.v {1 {vlog -work work D:/Download/prj1_RISC_Toy/RISC_toy/Mux_SRC2.v
+} {} {}} D:/Download/prj1_RISC_Toy/RISC_toy/MW.v {1 {vlog -work work {D:\Download\prj1_RISC_Toy\RISC_toy\MW.v}
 Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
--- Compiling module muxSrc2
+-- Compiling module MW
 
 Top level modules:
-	muxSrc2
+	MW
 
-} {} {}} D:/Download/prj1_RISC_Toy/RISC_toy/muxAluSRC1.v {1 {vlog -work work D:/Download/prj1_RISC_Toy/RISC_toy/muxAluSRC1.v
+} {} {}} D:/Download/prj1_RISC_Toy/RISC_toy/MuxSrc2.v {1 {vlog -work work {D:\Download\prj1_RISC_Toy\RISC_toy\MuxSrc2.v}
 Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
--- Compiling module muxAluSrc1
+-- Compiling module MuxSrc2
 
 Top level modules:
-	muxAluSrc1
+	MuxSrc2
 
 } {} {}}
