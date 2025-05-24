@@ -35,6 +35,8 @@ module RISC_TOY (
 		
 // FD (Pipeline Register)
 	
+	
+	
 // ID Stage
 	// INSTR Decode
 	wire [4:0] opcode = INSTR[31:27];
@@ -65,6 +67,9 @@ module RISC_TOY (
 	);
 		
 // DE (Pipeline Register)
+
+
+
 	
 // EX Stage
 	// MuxSRC1
@@ -80,11 +85,21 @@ module RISC_TOY (
 	Mux3 muxFWD1(SRC1, ALUOUT_M, WBData, FW1, ALUSRC1);
 	Mux3 muxFWD2(SRC2, ALUOUT_M, WBData, FW2, ALUSRC2);
 
+
+
 // EM (Pipeline Register)
+
+
 
 // MEM Stage
 
+
+
+
 // MW (Pipeline Register)
+
+
+
 
 // WB Stage
 	// Mux3 : WBSRC
@@ -94,9 +109,7 @@ module RISC_TOY (
 	Mux3 muxWB (ALUOUT_W, LoadData_W, PCADD4_W, SelWB_W, WBData);
 	
 // Hazard Detection & Forward	
+
 	
-
-
-
 
 endmodule

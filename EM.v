@@ -18,8 +18,8 @@ always@(posedge CLK or negedge RSTN) begin
 	end
 	else begin
 		WEN_M <= WEN_E; DRW_M <= DRW_E; DREQ_M <= DREQ_E;  
-		PCADD4_M <= PCADD4_E; WA_M <= WA_E; ALUOUT_M <= ALUOUT_E; DOUT0_M <= DOUT0_E;
-		SelWB_M <= SelWB_E;
+		PCADD4_M <= PCADD4_E; WA_M <= WA_E; ALUOUT_M <= ALUOUT_E; 
+		DOUT0_M <= DOUT0_E; SelWB_M <= SelWB_E;
 	end
 end
 endmodule

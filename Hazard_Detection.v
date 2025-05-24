@@ -12,15 +12,15 @@ always@* begin
 	if(Load_E && (RA0_D == WA_E || RA1_D == WA_E)) begin
 		PCWrite = 0; FDWrite = 0; DEFlush = 1;
 	end
-	// For Type1 Hazard
+	// ALUSRC1 Select (Type1 > Type2)
 	if(WEN_M == 0) begin
 		if(RA0_E == WA_M) FW1 = 2'b01;
-		if(RA1_E == WA_M) FW2 = 2'b01;
+		else if(RA0_E == WA_W) FW1 = 2'b10;
 	end
-	// For Type2 Hazard
+	// ALUSRC2 Select (Type1 > Type2)
 	if(WEN_W == 0) begin
-		if(RA0_E == WA_W) FW1 = 2'b10;
-		if(RA1_E == WA_W) FW2 = 2'b10;
+		if(RA1_E == WA_M) FW2 = 2'b01;
+		else if(RA1_E == WA_W) FW2 = 2'b10;
 	end
 end
 endmodule
