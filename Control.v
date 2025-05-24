@@ -6,7 +6,7 @@ module Control(
 	output reg [1:0] SelWB_D, // 0: ALUOUT, 1: LoadData, 2: PCADD4_W
 	output reg [3:0] ALUOP_D,
 	output WEN_D, DRW_D, DREQ_D, 
-	output Jump, Branch, Store, Load_D
+	output Jump_D, Branch_D, Store, Load_D
 );
 wire reduceRB = &rb;
 // OP Encode
@@ -78,8 +78,8 @@ always@* begin
 	endcase
 end
 
-assign Jump = (opcode == J | opcode == JL);
-assign Branch = (opcode == BR | opcode == BRL);
+assign Jump_D = (opcode == J | opcode == JL);
+assign Branch_D = (opcode == BR | opcode == BRL);
 assign Store = DRW_D & (~DREQ_D);
 assign Load_D = (~DRW_D) & (~DREQ_D);
 endmodule

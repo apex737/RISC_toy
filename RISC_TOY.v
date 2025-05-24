@@ -22,16 +22,16 @@ module RISC_TOY (
 );
 
 // IF Stage
-	// Mux3 (I0, I1, I2, Sel, Out)
 	// Mux3 : PCSRC
 		wire [31:0] PCAdd4_F = (IADDR + 1) << 2; // PCSRC0
-		wire [31:0] rbData; // PCSRC1
+		wire [31:0] DOUT0_E; // PCSRC1 (rbData)
 		wire [31:0] Jext, PCAdd4_D;
-		wire [31:0] JPC_D = Jext + PCAdd4_D; // PCSRC2
-		wire Jump, Branch, Taken;
-		wire [1:0] PCSRC = {Jump, Branch&Taken}; // 00: PC+4, 01: rbData(BR_PC), 10: JPC_D
+		wire [31:0] JPC_E = Jext + PCAdd4_E; // PCSRC2
+		wire Jump_E, Branch_E, Taken_E;
+		wire [1:0] PCSRC = {Jump_E, Branch_E&Taken_E}; // 00: PC+4, 01: rbData(BR_PC), 10: JPC_D
 		wire [31:0] NextPC;
-		Mux3 muxPC (PCAdd4_F, rbData, JPC_D, PCSRC, NextPC);
+		// Mux3 (I0, I1, I2, Sel, Out)
+		Mux3 muxPC (PCAdd4_F, DOUT0_E, JPC_E, PCSRC, NextPC);
 		
 // FD (Pipeline Register)
 	
@@ -79,6 +79,7 @@ module RISC_TOY (
 	
 	// ALU
 	
+	// Mux3 (I0, I1, I2, Sel, Out)
 	// Mux3 : FWD1, FWD2
 	wire [31:0] SRC2, ALUSRC1, ALUSRC2;
 	wire [1:0] FW1, FW2;
@@ -106,6 +107,7 @@ module RISC_TOY (
 	wire [31:0] ALUOUT_W, LoadData_W, PCADD4_W // MW Output
 	wire [31:0]	WBData; 
 	wire [1:0] SelWB_W;
+	// Mux3 (I0, I1, I2, Sel, Out)
 	Mux3 muxWB (ALUOUT_W, LoadData_W, PCADD4_W, SelWB_W, WBData);
 	
 // Hazard Detection & Forward	
