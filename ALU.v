@@ -1,6 +1,6 @@
 module ALU(
 	input [3:0] ALUOP_E,
-	input [31:0] ALUSRC1, ALUSRC2,
+	input signed [31:0] ALUSRC1, ALUSRC2,
 	output reg [31:0] ALUOUT_E
 );
 wire [4:0] shamt = ALUSRC2[4:0];

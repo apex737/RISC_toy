@@ -6,7 +6,7 @@ module EM(
 	input [4:0] WA_E, 
 	input [31:0] PCADD4_E, ALUOUT_E, DOUT0_E, // DI
 	// output
-	output reg WEN_M, MemToReg_M, DRW_M, DREQ_M,
+	output reg WEN_M, DRW_M, DREQ_M,
 	output reg [1:0] SelWB_M,
 	output reg [4:0] WA_M,
 	output reg [31:0] PCADD4_M, ALUOUT_M, DOUT0_M // DI

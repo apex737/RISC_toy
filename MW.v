@@ -7,7 +7,7 @@ module MW(
 	input [4:0] WA_M,
 	// output
 	output reg [1:0] SelWB_W,
-	output reg WEN_W, MemToReg_W, 
+	output reg WEN_W,
 	output reg [31:0] ALUOUT_W, LoadData_W, PCADD4_W, DOUT0_W,
 	output reg [4:0] WA_W
 );

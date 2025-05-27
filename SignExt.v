@@ -6,6 +6,6 @@ module SignExt(
 );
 assign shamtExt_D = {27'b0, shamt};
 assign zeroExt_D = {15'b0, Imm17};
-assign Iext_D = {{15{1'b1}}, Imm17};
-assign Jext = {{10{1'b1}}, Imm22};
+assign Iext_D = {{15{Imm17[16]}}, Imm17};
+assign Jext = {{10{Imm22[21]}}, Imm22};
 endmodule

@@ -68,11 +68,11 @@ end
 
 // Ctrl Signal
 reg [2:0] Ctrl;
-assign {WEN_D, DRW_D, DREQ_D} = Ctrl;
+assign {WEN_D, DRW_D, DREQ_D} = Ctrl; // WEN_D : Active Low
 always@* begin
-	Ctrl = 3'b001; // RegWrite O, Mem X (Active Low)
+	Ctrl = 3'b001; // RegWrite, No MemAccess
 	case(opcode)
-		J, JL, BR, BRL: Ctrl = 3'b101; // RegWrite X, Mem X
+		J, JL, BR, BRL: Ctrl = 3'b101; // No RegWrite, No MemAccess
 		ST, STR: Ctrl = 3'b110;
 		LD, LDR: Ctrl = 3'b000;
 	endcase
