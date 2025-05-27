@@ -18,18 +18,18 @@ parameter [4:0]
 
 // Sel1_D, Sel2_D
 always@* begin
-	{Sel1_D, Sel2_D} = {1'b0, 3'b000};
+	{Sel1_D, Sel2_D} = {1'b0, 3'd0};
 	case(opcode)
-		ADDI, ORI, ANDI : {Sel1_D, Sel2_D} = {1'b0, 3'b001};
+		ADDI, ORI, ANDI : {Sel1_D, Sel2_D} = {1'b0, 3'd1};
 		LSR, ASR, SHL, ROR : begin
 			Sel1_D = 1'b0;
-			Sel2_D = shSrc ? 3'b000 : 3'b010;
+			Sel2_D = shSrc ? 3'd0 : 3'd2;
 		end
-		MOVI : {Sel1_D, Sel2_D} = {1'b0, 3'b010};
-		ST : {Sel1_D, Sel2_D} = reduceRB ? {1'b0, 3'b011} : {1'b1, 3'b000};
-		STR : {Sel1_D, Sel2_D} = {1'b0, 3'b100};
-		LD : {Sel1_D, Sel2_D} = reduceRB ? {1'b0, 3'b011} : {1'b0, 3'b001};
-		LDR : {Sel1_D, Sel2_D} = {1'b0, 3'b100};
+		MOVI : {Sel1_D, Sel2_D} = {1'b0, 3'd2};
+		ST : {Sel1_D, Sel2_D} = reduceRB ? {1'b0, 3'd3} : {1'b1, 3'd0};
+		STR : {Sel1_D, Sel2_D} = {1'b0, 3'd4};
+		LD : {Sel1_D, Sel2_D} = reduceRB ? {1'b0, 3'd3} : {1'b0, 3'd1};
+		LDR : {Sel1_D, Sel2_D} = {1'b0, 3'd4};
 	endcase
 end
 
