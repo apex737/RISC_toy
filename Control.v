@@ -6,7 +6,7 @@ module Control(
 	output reg [1:0] SelWB_D, // 0: ALUOUT, 1: LoadData, 2: PCADD4_W
 	output reg [3:0] ALUOP_D,
 	output WEN_D, DRW_D, DREQ_D, 
-	output Jump_D, Branch_D, Store, Load_D
+	output Jump_D, Branch_D, Load_D
 );
 wire reduceRB = &rb;
 // OP Encode
@@ -25,7 +25,7 @@ always@* begin
 			Sel1_D = 1'b0;
 			Sel2_D = shSrc ? 3'd0 : 3'd2;
 		end
-		MOVI : {Sel1_D, Sel2_D} = {1'b0, 3'd2};
+		MOVI : {Sel1_D, Sel2_D} = {1'b0, 3'd1};
 		ST : {Sel1_D, Sel2_D} = reduceRB ? {1'b0, 3'd3} : {1'b1, 3'd0};
 		STR : {Sel1_D, Sel2_D} = {1'b0, 3'd4};
 		LD : {Sel1_D, Sel2_D} = reduceRB ? {1'b0, 3'd3} : {1'b0, 3'd1};
@@ -59,28 +59,19 @@ end
 
 // SelWB
 always@* begin
+	SelWB_D = 2'd0; // ALUOUT
 	case(opcode)
-		LD, LDR : SelWB_D = 2'b01;
-		JL, BRL : SelWB_D = 2'b10;
-		default : SelWB_D = 2'b00;
-	endcase
-end
-
-// Ctrl Signal
-reg [2:0] Ctrl;
-assign {WEN_D, DRW_D, DREQ_D} = Ctrl; // WEN_D : Active Low
-always@* begin
-	Ctrl = 3'b001; // RegWrite, No MemAccess
-	case(opcode)
-		J, JL, BR, BRL: Ctrl = 3'b101; // No RegWrite, No MemAccess
-		ST, STR: Ctrl = 3'b110;
-		LD, LDR: Ctrl = 3'b000;
+		LD, LDR : SelWB_D = 2'd1; // LoadData
+		JL, BRL : SelWB_D = 2'd2; // PC
 	endcase
 end
 
 assign Jump_D = (opcode == J | opcode == JL);
 assign Branch_D = (opcode == BR | opcode == BRL);
-assign Store = DRW_D & (~DREQ_D);
-assign Load_D = (~DRW_D) & (~DREQ_D);
+assign WEN_D = (opcode == J) | (opcode == BR) | (opcode == ST) | (opcode == STR); // No RegWrite
+assign DRW_D = (opcode == ST) | (opcode == STR); // Store
+assign Load_D = (opcode == LD) | (opcode == LDR); 
+assign DREQ_D = (opcode == LD) | (opcode == LDR) | (opcode == ST) | (opcode == STR);
+
 endmodule
 

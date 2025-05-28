@@ -8,6 +8,7 @@ wire [31:0] ROR = (ALUSRC1 >> shamt) | (ALUSRC1 << (5'd32 - shamt));
 always@* begin
 	ALUOUT_E = 0;
 	case(ALUOP_E)
+		4'd0: ALUOUT_E = 0;
 		4'd1: ALUOUT_E = ALUSRC1 + ALUSRC2;
 		4'd2: ALUOUT_E = ALUSRC1 - ALUSRC2;
 		4'd3: ALUOUT_E = (-ALUSRC2);

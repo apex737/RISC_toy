@@ -26,9 +26,6 @@ module RISC_TOY (
 	// IF Stage 
 	// Mux3 : PCSRC
 	wire [31:0] PCAdd4_F; // PCSRC0
-	//	wire [31:0] DOUT0_E; // PCSRC1 (rbData)
-	//	wire [31:0] JPC_E // PCSRC2
-	wire Jump_E, Branch_E, Taken_E;
 	wire [1:0] PCSRC; 
 	wire [31:0] NextPC;
 	wire PCWrite;
@@ -44,7 +41,6 @@ module RISC_TOY (
 	wire [3:0] ALUOP_D;
 	wire WEN_D, DRW_D, DREQ_D;
 	wire Jump_D, Branch_D, Load_D, Taken_D;
-	wire Store;
 	wire [31:0] DOUT0_D, DOUT1_D;
 	wire [4:0] RA0_D, RA1_D;
 	wire [31:0] Iext_D, Jext, zeroExt_D, shamtExt_D;
@@ -60,6 +56,8 @@ module RISC_TOY (
 	wire [4:0] RA0_E, RA1_E, WA_E;
   wire [31:0] DOUT0_E, DOUT1_E, PCADD4_E;
 	wire [31:0] JPC_E, zeroExt_E, Iext_E, shamtExt_E;
+	wire Jump_E, Branch_E, Taken_E;
+
 
 	// EX Stage
 	// MuxSRC
@@ -109,7 +107,6 @@ module RISC_TOY (
 	wire cond = INSTR_o[2:0];
 	wire Imm17 = INSTR_o[16:0];
 	wire Imm22 = INSTR_o[21:0];
-	
 	// Control Unit	
 	Control InstCtrl(
 		// Input 
@@ -117,12 +114,12 @@ module RISC_TOY (
 		// Output
 		Sel1_D, Sel2_D, SelWB_D, 
 		ALUOP_D, WEN_D, DRW_D, DREQ_D, Jump_D, 
-		Branch_D, Store, Load_D
+		Branch_D, Load_D
 	);
 	
 	// REGISTER FILE FOR GENRAL PURPOSE REGISTERS
-	assign RA0_D = Store ? ra : rb;
-	assign RA1_D = Store ? rb : rc;
+	assign RA0_D = DRW_D ? ra : rb;
+	assign RA1_D = DRW_D ? rb : rc;
 	REGFILE    #(.AW(5), .ENTRY(32))    RegFile (
 								.CLK    (CLK),
 								.RSTN   (RSTN),
@@ -193,10 +190,10 @@ module RISC_TOY (
 	MW InstMW(
 		// Input
 		CLK, RSTN, SelWB_M, WEN_M, ALUOUT_M, LoadData_M, 
-		PCADD4_M, DOUT0_M, WA_M,
+		PCADD4_M, WA_M,
 		// Output
 		SelWB_W, WEN_W, ALUOUT_W, LoadData_W, 
-		PCADD4_W, DOUT0_W, WA_W
+		PCADD4_W, WA_W
 	);
 
 // WB Stage
