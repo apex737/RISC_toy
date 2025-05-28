@@ -26,21 +26,6 @@
     );
 */
 
-// IM
-module IM (
-    input [29:0] IADDR,
-    input IREQ,
-    output [31:0] INSTR
-);
-    reg [31:0] memory [0:1023];  // 4KB 
-    initial begin
-        $readmemh("inst.hex", memory);
-    end
-
-    assign INSTR = IREQ ? memory[IADDR] : 32'b0;
-endmodule
-
-// REGFILE 
 module REGFILE #(parameter AW = 5, ENTRY = 32) (
     input    wire                CLK, 
     input    wire                RSTN,	 // RESET (ACTIVE LOW)
@@ -85,7 +70,11 @@ module REGFILE #(parameter AW = 5, ENTRY = 32) (
 
 endmodule
 
-/*  SINGLE-PORT SYNCHRONOUS MEMORY MODEL
+
+
+
+/*
+    SINGLE-PORT SYNCHRONOUS MEMORY MODEL
 
     FUNCTION TABLE:
 
@@ -130,8 +119,8 @@ module SRAM #(parameter BW = 32, AW = 10, ENTRY = 1024, WRITE = 0, MEM_FILE="mem
     begin
         if (~CSN)
         begin
-            if (WEN)    outline    <= ram[A]; // READ
-            else        ram[A]    <= DI; // Write
+            if (WEN)    outline    <= ram[A];
+            else        ram[A]    <= DI;
         end
     end
 

@@ -25,14 +25,14 @@ module RISC_TOY (
 /////////////////////////////////////
 	// IF Stage 
 	// Mux3 : PCSRC
-	wire [31:0] PCAdd4_F; // PCSRC0
 	wire [1:0] PCSRC; 
 	wire [31:0] NextPC;
+	wire [29:0] IADDR_o;
 	wire PCWrite;
 	wire FDWrite;
 	
 	// FD (Pipeline Register)
-	wire [31:0] INSTR_i, PCadd4_F, INSTR_o, PCadd4_D;
+	wire [31:0] INSTR_i, PCADD4_F, INSTR_o, PCADD4_D;
 	
 	// ID Stage
 	wire Sel1_D;
@@ -42,9 +42,8 @@ module RISC_TOY (
 	wire WEN_D, DRW_D, DREQ_D;
 	wire Jump_D, Branch_D, Load_D, Taken_D;
 	wire [31:0] DOUT0_D, DOUT1_D;
-	wire [4:0] RA0_D, RA1_D;
+	wire [4:0] RA0_D, RA1_D, WA_D;
 	wire [31:0] Iext_D, Jext, zeroExt_D, shamtExt_D;
-	wire signed [31:0] JPC_D; 
 	
 	// DE (Pipeline Register)
 	wire DEFlush;
@@ -76,37 +75,41 @@ module RISC_TOY (
 	// WB Stage
 	wire [1:0] SelWB_W; 
 	wire WEN_W;
-	wire [31:0] ALUOUT_W, LoadData_W, PCADD4_W, DOUT0_W;
+	wire [31:0] ALUOUT_W, LoadData_W, PCADD4_W;
 	wire [31:0]	WBData; 
 
 /////////////////////////////////////
 // Assign & Instantiation
 /////////////////////////////////////
 // IF Stage
-	assign PCAdd4_F = (IADDR + 1) << 2;
-	assign PCSRC = {Jump_E, Branch_E&Taken_E}; // 00: PCAdd4_F, 01: rbData(BR_PC), 10: JPC_D
+	assign PCADD4_F = (IADDR_o + 1) << 2;
+	assign PCSRC = {Jump_E, Branch_E&Taken_E};
+	
 	// Mux3 (I0, I1, I2, Sel, Out)
-	Mux3 muxPC (PCAdd4_F, DOUT0_E, JPC_E, PCSRC, NextPC);
+	Mux3 muxPC (PCADD4_F, DOUT0_E, JPC_E, PCSRC, NextPC);
 		
 	// PC
-	PC instPC (PCWrite, CLK, RSTN, NextPC, IADDR);
+	PC instPC (PCWrite, CLK, RSTN, NextPC, IADDR_o);
 	
 	// IM
-	IM instIM (IADDR, IREQ, INSTR);
+	assign IREQ = 1;
+	assign IADDR = IADDR_o;
+	assign INSTR_i = INSTR;
+	
 	// FD (Pipeline Register)
-	FD instFD (CLK, RSTN, FDWrite, INSTR_i, PCadd4_F, INSTR_o, PCadd4_D);
+	FD instFD (CLK, RSTN, FDWrite, INSTR_i, PCADD4_F, INSTR_o, PCADD4_D);
 	
 // ID Stage
 	// INSTR Decode
 	wire [4:0] opcode = INSTR_o[31:27];
-	wire ra = INSTR_o[26:22];
-	wire rb = INSTR_o[21:17];
-	wire rc = INSTR_o[16:12];
+	wire [4:0] ra = INSTR_o[26:22];
+	wire [4:0] rb = INSTR_o[21:17];
+	wire [4:0] rc = INSTR_o[16:12];
 	wire shSrc = INSTR_o[5];
-	wire shamt = INSTR_o[4:0];
-	wire cond = INSTR_o[2:0];
-	wire Imm17 = INSTR_o[16:0];
-	wire Imm22 = INSTR_o[21:0];
+	wire [4:0] shamt = INSTR_o[4:0];
+	wire [2:0] cond = INSTR_o[2:0];
+	wire [16:0] Imm17 = INSTR_o[16:0];
+	wire [21:0] Imm22 = INSTR_o[21:0];
 	wire NOP = ~(|INSTR_o);
 	// Control Unit	
 	Control InstCtrl(
@@ -138,15 +141,16 @@ module RISC_TOY (
 	
 	// SignExt
 	SignExt SE(Imm17, Imm22, shamt, Iext_D, Jext, zeroExt_D, shamtExt_D);
-	assign JPC_D = $signed(Jext) + $signed(PCadd4_D);
+	wire signed [31:0] JPC_D = $signed(Jext) + $signed(PCADD4_D);
 
 // DE (Pipeline Register)
+	assign WA_D = ra;
 	DE InstDE(
 		// Input
 		CLK, RSTN, DEFlush, 
 		SelWB_D, WEN_D, Load_D, Jump_D, Branch_D, 
 		Taken_D, DRW_D, DREQ_D, Sel1_D, Sel2_D, ALUOP_D, RA0_D, RA1_D, WA_D,
-		DOUT0_D, DOUT1_D, PCadd4_D, JPC_D, zeroExt_D, Iext_D, shamtExt_D,
+		DOUT0_D, DOUT1_D, PCADD4_D, JPC_D, zeroExt_D, Iext_D, shamtExt_D,
 		// Output
 		SelWB_E, WEN_E, Load_E, Jump_E, Branch_E, Taken_E, DRW_E, DREQ_E,  
 		Sel1_E, Sel2_E, ALUOP_E, RA0_E, RA1_E, WA_E, DOUT0_E, DOUT1_E, PCADD4_E,
@@ -178,30 +182,22 @@ module RISC_TOY (
 	);
 	
 // MEM Stage
-	SRAM #(
-    .BW(32),
-    .AW(10),
-    .ENTRY(1024),
-    .WRITE(1),
-    .MEM_FILE("mem.hex")
-	) InstSRAM(
-		.CLK(CLK),
-		.CSN(DREQ_M), 
-		.A(ALUOUT_M),
-		.WEN(DRW_M),
-		.DI(DOUT0_M),
-		.DOUT(LoadData_M)
-	);
-
-// MW (Pipeline Register)
-	MW InstMW(
-		// Input
-		CLK, RSTN, SelWB_M, WEN_M, ALUOUT_M, LoadData_M, 
-		PCADD4_M, WA_M,
-		// Output
-		SelWB_W, WEN_W, ALUOUT_W, LoadData_W, 
-		PCADD4_W, WA_W
-	);
+	// DM
+	assign DADDR = ALUOUT_M;
+	assign DWDATA = DOUT0_M;
+	assign DREQ = DREQ_M;
+	assign DRW = DREQ_M;
+	assign LoadData_M = DRDATA;
+	
+	// MW (Pipeline Register)
+		MW InstMW(
+			// Input
+			CLK, RSTN, SelWB_M, WEN_M, ALUOUT_M, LoadData_M, 
+			PCADD4_M, WA_M,
+			// Output
+			SelWB_W, WEN_W, ALUOUT_W, LoadData_W, 
+			PCADD4_W, WA_W
+		);
 
 // WB Stage
 	// Mux3 (I0, I1, I2, Sel, Out)

@@ -1,20 +1,25 @@
-D:/Download/prj1_RISC_Toy/RISC_toy/BranchTaken.v {1 {vlog -work work D:/Download/prj1_RISC_Toy/RISC_toy/BranchTaken.v
+D:/Download/prj1_RISC_Toy/RISC_toy/model.v {1 {vlog -work work {D:\Download\prj1_RISC_Toy\RISC_toy\model.v}
+Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+-- Compiling module REGFILE
+-- Compiling module SRAM
+
+Top level modules:
+	REGFILE
+	SRAM
+
+} {} {}} D:/Download/prj1_RISC_Toy/RISC_toy/Control.v {1 {vlog -work work {D:\Download\prj1_RISC_Toy\RISC_toy\Control.v}
+Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+-- Compiling module Control
+
+Top level modules:
+	Control
+
+} {} {}} D:/Download/prj1_RISC_Toy/RISC_toy/BranchTaken.v {1 {vlog -work work D:/Download/prj1_RISC_Toy/RISC_toy/BranchTaken.v
 Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
 -- Compiling module BranchTaken
 
 Top level modules:
 	BranchTaken
-
-} {} {}} D:/Download/prj1_RISC_Toy/RISC_toy/model.v {1 {vlog -work work {D:\Download\prj1_RISC_Toy\RISC_toy\model.v}
-Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
--- Compiling module IM
--- Compiling module REGFILE
--- Compiling module SRAM
-
-Top level modules:
-	IM
-	REGFILE
-	SRAM
 
 } {} {}} D:/Download/prj1_RISC_Toy/RISC_toy/ALU.v {1 {vlog -work work {D:\Download\prj1_RISC_Toy\RISC_toy\ALU.v}
 Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
@@ -36,6 +41,13 @@ Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
 
 Top level modules:
 	Mux3
+
+} {} {}} D:/Download/prj1_RISC_Toy/RISC_toy/testbench.v {1 {vlog -work work {D:\Download\prj1_RISC_Toy\RISC_toy\testbench.v}
+Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+-- Compiling module testbench
+
+Top level modules:
+	testbench
 
 } {} {}} D:/Download/prj1_RISC_Toy/RISC_toy/Hazard_Detection.v {1 {vlog -work work {D:\Download\prj1_RISC_Toy\RISC_toy\Hazard_Detection.v}
 Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
