@@ -1,6 +1,6 @@
 module Control(
 	input [4:0] opcode, rb,
-	input shSrc, 
+	input shSrc, NOP,
 	output reg Sel1_D, // 0: R[rb], 1: Iext
 	output reg [2:0] Sel2_D, // 0: R[rc], 1: shamt, 2: zeroExt, 3: Iext, 4: JPC
 	output reg [1:0] SelWB_D, // 0: ALUOUT, 1: LoadData, 2: PCADD4_W
@@ -15,6 +15,13 @@ parameter [4:0]
 	ANDI = 5'd6, OR = 5'd7, ORI = 5'd8, XOR = 5'd9, LSR = 5'd10, ASR = 5'd11, 
 	SHL = 5'd12, ROR = 5'd13, MOVI = 5'd14, J = 5'd15, JL = 5'd16, BR = 5'd17,
 	BRL = 5'd18, ST = 5'd19, STR = 5'd20, LD = 5'd21, LDR = 5'd22;
+
+assign Jump_D = (opcode == J | opcode == JL);
+assign Branch_D = (opcode == BR | opcode == BRL);
+assign WEN_D = NOP | (opcode == J) | (opcode == BR) | (opcode == ST) | (opcode == STR); // No RegWrite
+assign DRW_D = (opcode == ST) | (opcode == STR); // Store
+assign Load_D = (opcode == LD) | (opcode == LDR); 
+assign DREQ_D = (opcode == LD) | (opcode == LDR) | (opcode == ST) | (opcode == STR);
 
 // Sel1_D, Sel2_D
 always@* begin
@@ -65,13 +72,6 @@ always@* begin
 		JL, BRL : SelWB_D = 2'd2; // PC
 	endcase
 end
-
-assign Jump_D = (opcode == J | opcode == JL);
-assign Branch_D = (opcode == BR | opcode == BRL);
-assign WEN_D = (opcode == J) | (opcode == BR) | (opcode == ST) | (opcode == STR); // No RegWrite
-assign DRW_D = (opcode == ST) | (opcode == STR); // Store
-assign Load_D = (opcode == LD) | (opcode == LDR); 
-assign DREQ_D = (opcode == LD) | (opcode == LDR) | (opcode == ST) | (opcode == STR);
 
 endmodule
 

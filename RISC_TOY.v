@@ -107,10 +107,11 @@ module RISC_TOY (
 	wire cond = INSTR_o[2:0];
 	wire Imm17 = INSTR_o[16:0];
 	wire Imm22 = INSTR_o[21:0];
+	wire NOP = ~(|INSTR_o);
 	// Control Unit	
 	Control InstCtrl(
 		// Input 
-		opcode, rb, shSrc, 
+		opcode, rb, shSrc, NOP,
 		// Output
 		Sel1_D, Sel2_D, SelWB_D, 
 		ALUOP_D, WEN_D, DRW_D, DREQ_D, Jump_D, 
@@ -177,7 +178,13 @@ module RISC_TOY (
 	);
 	
 // MEM Stage
-	SRAM InstRAM(
+	SRAM #(
+    .BW(32),
+    .AW(10),
+    .ENTRY(1024),
+    .WRITE(1),
+    .MEM_FILE("mem.hex")
+	) InstSRAM(
 		.CLK(CLK),
 		.CSN(DREQ_M), 
 		.A(ALUOUT_M),
