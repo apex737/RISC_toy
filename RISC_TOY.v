@@ -35,27 +35,27 @@ module RISC_TOY (
 	wire [31:0] INSTR_i, PCADD4_F, INSTR_o, PCADD4_D;
 	
 	// ID Stage
-	wire Sel1_D;
+	wire Sel1_D, RS1Used_D, RS2Used_D;
 	wire [2:0] Sel2_D;
 	wire [1:0] SelWB_D;
 	wire [3:0] ALUOP_D;
 	wire WEN_D, DRW_D, DREQ_D;
-	wire Jump_D, Branch_D, Load_D, Taken_D;
+	wire Jump, Branch, Taken, Load_D;
 	wire [31:0] DOUT0_D, DOUT1_D;
 	wire [4:0] RA0_D, RA1_D, WA_D;
 	wire [31:0] Iext_D, Jext, zeroExt_D, shamtExt_D;
+	wire signed [31:0] JPC_D;
 	
 	// DE (Pipeline Register)
 	wire DEFlush;
 	wire [1:0] SelWB_E;
 	wire WEN_E, Load_E;
-	wire DRW_E, DREQ_E, Sel1_E;
+	wire DRW_E, DREQ_E, Sel1_E, RS1Used_E, RS2Used_E;
 	wire [2:0] Sel2_E;
   wire [3:0] ALUOP_E;
 	wire [4:0] RA0_E, RA1_E, WA_E;
   wire [31:0] DOUT0_E, DOUT1_E, PCADD4_E;
-	wire [31:0] JPC_E, zeroExt_E, Iext_E, shamtExt_E;
-	wire Jump_E, Branch_E, Taken_E;
+	wire [31:0] zeroExt_E, Iext_E, shamtExt_E, JPC_E;
 
 
 	// EX Stage
@@ -73,20 +73,22 @@ module RISC_TOY (
 	wire [31:0]	PCADD4_M, ALUOUT_M, DOUT0_M, LoadData_M;
 
 	// WB Stage
-	wire [1:0] SelWB_W; 
 	wire WEN_W;
+	wire [1:0] SelWB_W; 
+	wire [4:0] WA_W;
 	wire [31:0] ALUOUT_W, LoadData_W, PCADD4_W;
 	wire [31:0]	WBData; 
 
 /////////////////////////////////////
 // Assign & Instantiation
 /////////////////////////////////////
+
 // IF Stage
 	assign PCADD4_F = (IADDR_o + 1) << 2;
-	assign PCSRC = {Jump_E, Branch_E&Taken_E};
+	assign PCSRC = {Jump, Branch&Taken};
 	
 	// Mux3 (I0, I1, I2, Sel, Out)
-	Mux3 muxPC (PCADD4_F, DOUT0_E, JPC_E, PCSRC, NextPC);
+	Mux3 muxPC (PCADD4_F, DOUT0_D, JPC_D, PCSRC, NextPC);
 		
 	// PC
 	PC instPC (PCWrite, CLK, RSTN, NextPC, IADDR_o);
@@ -117,8 +119,8 @@ module RISC_TOY (
 		opcode, rb, shSrc, NOP,
 		// Output
 		Sel1_D, Sel2_D, SelWB_D, 
-		ALUOP_D, WEN_D, DRW_D, DREQ_D, Jump_D, 
-		Branch_D, Load_D
+		ALUOP_D, WEN_D, DRW_D, DREQ_D, Jump, 
+		Branch, Load_D, RS1Used_D, RS2Used_D
 	);
 	
 	// REGISTER FILE FOR GENRAL PURPOSE REGISTERS
@@ -137,24 +139,22 @@ module RISC_TOY (
 	);
 	
 	// BranchTaken
-	BranchTaken InstBR(DOUT1_D, cond, Taken_D);
+	BranchTaken InstBR(DOUT1_D, cond, Taken);
 	
 	// SignExt
 	SignExt SE(Imm17, Imm22, shamt, Iext_D, Jext, zeroExt_D, shamtExt_D);
-	wire signed [31:0] JPC_D = $signed(Jext) + $signed(PCADD4_D);
+	assign JPC_D = $signed(Jext) + $signed(PCADD4_D);
 
 // DE (Pipeline Register)
 	assign WA_D = ra;
 	DE InstDE(
 		// Input
 		CLK, RSTN, DEFlush, 
-		SelWB_D, WEN_D, Load_D, Jump_D, Branch_D, 
-		Taken_D, DRW_D, DREQ_D, Sel1_D, Sel2_D, ALUOP_D, RA0_D, RA1_D, WA_D,
-		DOUT0_D, DOUT1_D, PCADD4_D, JPC_D, zeroExt_D, Iext_D, shamtExt_D,
+		SelWB_D, WEN_D, Load_D, DRW_D, DREQ_D, Sel1_D, RS1Used_D, RS2Used_D, Sel2_D, ALUOP_D, 
+		RA0_D, RA1_D, WA_D, DOUT0_D, DOUT1_D, PCADD4_D, JPC_D, zeroExt_D, Iext_D, shamtExt_D,
 		// Output
-		SelWB_E, WEN_E, Load_E, Jump_E, Branch_E, Taken_E, DRW_E, DREQ_E,  
-		Sel1_E, Sel2_E, ALUOP_E, RA0_E, RA1_E, WA_E, DOUT0_E, DOUT1_E, PCADD4_E,
-		JPC_E, zeroExt_E, Iext_E, shamtExt_E
+		SelWB_E, WEN_E, Load_E, DRW_E, DREQ_E, Sel1_E, RS1Used_E, RS2Used_E, Sel2_E, ALUOP_E, 
+		RA0_E, RA1_E, WA_E, DOUT0_E, DOUT1_E, PCADD4_E, JPC_E, zeroExt_E, Iext_E, shamtExt_E
 	);
 	
 // EX Stage
@@ -206,8 +206,8 @@ module RISC_TOY (
 // Hazard Detection & Forward	
 	Hazard_Detection InstHD(
 		// Input
-		RA0_D, RA1_D, RA0_E, RA1_E, WA_E, WA_M, WA_W,
-		Load_E, WEN_M, WEN_W, 
+		RA0_D, RA1_D, RS1Used_D, RS2Used_D, RA0_E, RA1_E, WA_E, 
+		Load_E, RS1Used_E, RS2Used_E, WA_M, WEN_M, WA_W, WEN_W,     
 		// Output
 		PCWrite, FDWrite, DEFlush, FW1, FW2
 	);

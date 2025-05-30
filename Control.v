@@ -6,7 +6,8 @@ module Control(
 	output reg [1:0] SelWB_D, // 0: ALUOUT, 1: LoadData, 2: PCADD4_W
 	output reg [3:0] ALUOP_D,
 	output WEN_D, DRW_D, DREQ_D, 
-	output Jump_D, Branch_D, Load_D
+	output Jump, Branch, Load_D,
+	output RS1Used_D, RS2Used_D
 );
 wire reduceRB = &rb;
 // OP Encode
@@ -16,8 +17,25 @@ parameter [4:0]
 	SHL = 5'd12, ROR = 5'd13, MOVI = 5'd14, J = 5'd15, JL = 5'd16, BR = 5'd17,
 	BRL = 5'd18, ST = 5'd19, STR = 5'd20, LD = 5'd21, LDR = 5'd22;
 
-assign Jump_D = (opcode == J | opcode == JL);
-assign Branch_D = (opcode == BR | opcode == BRL);
+// RSUsed
+reg [1:0] RSUsed; // {RS1Used_D, RS2Used_D};
+always@* begin
+	if(NOP) RSUsed = 2'b00;
+	else begin
+		case(opcode)
+			ADD, SUB, AND, OR, XOR: RSUsed = 2'b11;
+			ADDI, ANDI, ORI, STR: RSUsed = 2'b10;
+			LSR, ASR, SHL, ROR : RSUsed = shSrc ? 2'b11 : 2'b10;
+			NOT, NEG : RSUsed = 2'b01;
+			LD : RSUsed = reduceRB ? 2'b10 : 2'b00;
+			ST : RSUsed = reduceRB ? 2'b10 : 2'b11;
+			default : RSUsed = 2'b00; 	 // J, JL, MOVI, LDR, BR, BRL
+		endcase
+	end
+end
+assign {RS1Used_D, RS2Used_D} = RSUsed;
+assign Jump = (opcode == J | opcode == JL);
+assign Branch = (opcode == BR | opcode == BRL);
 assign WEN_D = NOP | (opcode == J) | (opcode == BR) | (opcode == ST) | (opcode == STR); // No RegWrite
 assign DRW_D = (opcode == ST) | (opcode == STR); // Store
 assign Load_D = (opcode == LD) | (opcode == LDR); 
@@ -72,6 +90,7 @@ always@* begin
 		JL, BRL : SelWB_D = 2'd2; // PC
 	endcase
 end
+
 
 endmodule
 
