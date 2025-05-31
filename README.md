@@ -1,2 +1,9 @@
-오류1. INSTR이 xxx가 뜨고, PC가 업데이트 안됨 <br>
-해결1. always@* 블럭은 100% 진입을 한다고 착각 --> 내부 입력이 트리거될 때만 진입가능함
+### TEST FLOW
+#### 1. KILL HDU -> DEFAULT CTRL SIGNAL로 INSTR TEST
+#### 2. TYPE 1 HAZARD TEST (MEM -> EX)
+#### 3. TYPE 2 HAZARD TEST (WB -> EX)
+#### 4. TYPE 3 HAZARD TEST (WB - ID OVELAP STALL)
+#### 5. LOAD USE HAZARD TEST 
+##### 1) LOAD TYPE1 : 2 STALL
+##### 2) LOAD TYPE2 : 1 STALL
+#### 6. 연속 HAZARD TEST
