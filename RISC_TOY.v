@@ -179,7 +179,7 @@ module RISC_TOY (
 	
 // EX Stage
 	// MuxSRC1
-	assign SRC1 = Sel1_E ? DOUT0_E : Iext_E;
+	assign SRC1 = Sel1_E ? Iext_E : DOUT0_E;
 	// MuxSRC2
 	MuxSrc2 InstMuxSrc2(
 		Sel2_E, DOUT1_E, Iext_E, shamtExt_E, zeroExt_E, JPC_E, SRC2
