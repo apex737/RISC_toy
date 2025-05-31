@@ -3,7 +3,7 @@ module DE(
 	input CLK, RSTN, DEFlush,
 	input [1:0] SelWB_D,
 	input WEN_D, Load_D, 
-	input DRW_D, DREQ_D, Sel1_D, RS1Used_D, RS2Used_D, 
+	input DRW_D, DREQ_D, RS1Used_D, RS2Used_D, Sel1_D,
 	input [2:0] Sel2_D, 
 	input [3:0] ALUOP_D,
 	input [4:0] RA0_D, RA1_D, WA_D,
@@ -12,7 +12,7 @@ module DE(
 	// output
 	output reg [1:0] SelWB_E,
 	output reg WEN_E, Load_E,
-	output reg DRW_E, DREQ_E, Sel1_E, RS1Used_E, RS2Used_E,
+	output reg DRW_E, DREQ_E, RS1Used_E, RS2Used_E, Sel1_E,
 	output reg [2:0] Sel2_E, 
 	output reg [3:0] ALUOP_E,
 	output reg [4:0] RA0_E, RA1_E, WA_E,
