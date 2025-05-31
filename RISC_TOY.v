@@ -87,7 +87,7 @@ module RISC_TOY (
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 // IF Stage
-	assign PCADD4_F = (IADDR_o + 1) << 2;
+	assign PCADD4_F = IADDR_o + 4;
 	assign PCSRC = {Jump, Branch&Taken};
 	
 	// Mux3 (I0, I1, I2, Sel, Out)
@@ -238,7 +238,7 @@ module RISC_TOY (
 		.RS1Used_E(RS1Used_E), .RS2Used_E(RS2Used_E),
 		.WA_E(WA_E), .WA_M(WA_M), .WA_W(WA_W),
 		.Load_E(Load_E), .Load_M(Load_M),
-		.WEN_M(WEN_M), .WEN_W(WEN_W),
+		.WEN_M(WEN_M), .WEN_W(WEN_W), .Jump(Jump), .Branch(Branch), .Taken(Taken),
 		// output
 		.PCWrite(PCWrite), .IMRead(IMRead), .FDWrite(FDWrite), .DEFlush(DEFlush),
 		.FW1(FW1), .FW2(FW2)

@@ -5,6 +5,6 @@ module PC(
 );
 always@(posedge CLK or negedge RSTN) begin
 	if(~RSTN) IADDR <= 0;
-	else if (PCWrite) IADDR <= NextPC[31:2]; // NextPC >> 2 (word)
+	else if (PCWrite) IADDR <= NextPC[29:0]; // NextPC >> 2 (word)
 end
 endmodule

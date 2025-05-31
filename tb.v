@@ -35,7 +35,7 @@ module tb;
 	SRAM	INST_MEM	(
 		.CLK		(CLK),
 		.CSN		(~IREQ),
-		.A			(IADDR[9:0]),
+		.A			(IADDR[11:2]),
 		.WEN		(1'b1),
 		.DI			(),
 		.DOUT		(INSTR)
@@ -44,7 +44,7 @@ module tb;
 	SRAM	DATA_MEM	(
 		.CLK		(CLK),
 		.CSN		(~DREQ),
-		.A			(DADDR[9:0]),
+		.A			(DADDR[11:2]),
 		.WEN		(~DRW),
 		.DI			(DWDATA),
 		.DOUT		(DRDATA)
