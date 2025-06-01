@@ -20,7 +20,12 @@ module DE(
 	output reg [31:0] JPC_E, zeroExt_E, Iext_E, shamtExt_E
 );
 always@(posedge CLK or negedge RSTN) begin
-	if(~RSTN | DEFlush) begin
+	if(~RSTN) begin
+		WEN_E <= 1; DREQ_E <= 1; SelWB_E <= 0; Load_E <= 0; DRW_E <= 0; RS1Used_E <= 0; RS2Used_E <= 0; 
+		Sel1_E <= 0; Sel2_E <= 0; ALUOP_E <= 0; WA_E <= 0;  RA0_E <= 0; RA1_E <= 0;
+		DOUT0_E <= 0; DOUT1_E <= 0; PCADD4_E <= 0; JPC_E <= 0; zeroExt_E <= 0; Iext_E <= 0; shamtExt_E <= 0;
+	end
+	else if(DEFlush) begin
 		WEN_E <= 1; DREQ_E <= 1; SelWB_E <= 0; Load_E <= 0; DRW_E <= 0; RS1Used_E <= 0; RS2Used_E <= 0; 
 		Sel1_E <= 0; Sel2_E <= 0; ALUOP_E <= 0; WA_E <= 0;  RA0_E <= 0; RA1_E <= 0;
 		DOUT0_E <= 0; DOUT1_E <= 0; PCADD4_E <= 0; JPC_E <= 0; zeroExt_E <= 0; Iext_E <= 0; shamtExt_E <= 0;

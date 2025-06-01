@@ -8,6 +8,7 @@ always@* begin
 	case(Sel)
 		1: Out = I1;
 		2: Out = I2;
+		default: Out = I0;
 	endcase
 end
 endmodule

@@ -55,6 +55,7 @@ always@* begin
 		STR : {Sel1_D, Sel2_D} = {1'b0, 3'd4};
 		LD : {Sel1_D, Sel2_D} = reduceRB ? {1'b0, 3'd3} : {1'b0, 3'd1};
 		LDR : {Sel1_D, Sel2_D} = {1'b0, 3'd4};
+		default : {Sel1_D, Sel2_D} = {1'b0, 3'd0};
 	endcase
 end
 
@@ -88,7 +89,9 @@ always@* begin
 	case(opcode)
 		LD, LDR : SelWB_D = 2'd1; // LoadData
 		JL, BRL : SelWB_D = 2'd2; // PC
+		default : SelWB_D = 2'd0;
 	endcase
+	
 end
 
 

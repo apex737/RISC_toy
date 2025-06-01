@@ -1,4 +1,11 @@
-D:/Download/prj1_RISC_Toy/RISC_toy/model.v {1 {vlog -work work {D:\Download\prj1_RISC_Toy\RISC_toy\model.v}
+D:/Download/prj1_RISC_Toy/RISC_toy/Control.v {1 {vlog -work work {D:\Download\prj1_RISC_Toy\RISC_toy\Control.v}
+Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+-- Compiling module Control
+
+Top level modules:
+	Control
+
+} {} {}} D:/Download/prj1_RISC_Toy/RISC_toy/model.v {1 {vlog -work work {D:\Download\prj1_RISC_Toy\RISC_toy\model.v}
 Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
 -- Compiling module REGFILE
 -- Compiling module SRAM
@@ -6,13 +13,6 @@ Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
 Top level modules:
 	REGFILE
 	SRAM
-
-} {} {}} D:/Download/prj1_RISC_Toy/RISC_toy/Control.v {1 {vlog -work work D:/Download/prj1_RISC_Toy/RISC_toy/Control.v
-Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
--- Compiling module Control
-
-Top level modules:
-	Control
 
 } {} {}} D:/Download/prj1_RISC_Toy/RISC_toy/BranchTaken.v {1 {vlog -work work D:/Download/prj1_RISC_Toy/RISC_toy/BranchTaken.v
 Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
@@ -42,19 +42,19 @@ Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
 Top level modules:
 	RISC_TOY
 
+} {} {}} D:/Download/prj1_RISC_Toy/RISC_toy/Mux3.v {1 {vlog -work work {D:\Download\prj1_RISC_Toy\RISC_toy\Mux3.v}
+Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+-- Compiling module Mux3
+
+Top level modules:
+	Mux3
+
 } {} {}} D:/Download/prj1_RISC_Toy/RISC_toy/PCBuffer.v {1 {vlog -work work {D:\Download\prj1_RISC_Toy\RISC_toy\PCBuffer.v}
 Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
 -- Compiling module PCBuffer
 
 Top level modules:
 	PCBuffer
-
-} {} {}} D:/Download/prj1_RISC_Toy/RISC_toy/Mux3.v {1 {vlog -work work D:/Download/prj1_RISC_Toy/RISC_toy/Mux3.v
-Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
--- Compiling module Mux3
-
-Top level modules:
-	Mux3
 
 } {} {}} D:/Download/prj1_RISC_Toy/RISC_toy/Mux4.v {1 {vlog -work work {D:\Download\prj1_RISC_Toy\RISC_toy\Mux4.v}
 Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
@@ -70,19 +70,19 @@ Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
 Top level modules:
 	tb
 
+} {} {}} D:/Download/prj1_RISC_Toy/RISC_toy/Hazard_Detection.v {1 {vlog -work work {D:\Download\prj1_RISC_Toy\RISC_toy\Hazard_Detection.v}
+Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+-- Compiling module Hazard_Detection
+
+Top level modules:
+	Hazard_Detection
+
 } {} {}} D:/Download/prj1_RISC_Toy/RISC_toy/MemBuffer.v {1 {vlog -work work {D:\Download\prj1_RISC_Toy\RISC_toy\MemBuffer.v}
 Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
 -- Compiling module MemBuffer
 
 Top level modules:
 	MemBuffer
-
-} {} {}} D:/Download/prj1_RISC_Toy/RISC_toy/DE.v {1 {vlog -work work D:/Download/prj1_RISC_Toy/RISC_toy/DE.v
-Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
--- Compiling module DE
-
-Top level modules:
-	DE
 
 } {} {}} D:/Download/prj1_RISC_Toy/RISC_toy/EM.v {1 {vlog -work work {D:\Download\prj1_RISC_Toy\RISC_toy\EM.v}
 Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
