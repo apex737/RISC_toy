@@ -31,9 +31,10 @@ module RISC_TOY (
 	wire PCWrite;
 	wire FDWrite;
 	wire IMRead;
+	wire [31:0] PCADD4_F1; 
 	
 	// FD (Pipeline Register)
-	wire [31:0] INSTR_i, PCADD4_F, INSTR_o, PCADD4_D;
+	wire [31:0] INSTR_i, PCADD4_F2, INSTR_o, PCADD4_D;
 	
 	// ID Stage
 	wire Sel1_D, RS1Used_D, RS2Used_D;
@@ -93,14 +94,17 @@ module RISC_TOY (
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 // IF Stage
-	assign PCADD4_F = IADDR_o + 4;
+	assign PCADD4_F1 = IADDR_o + 4;
 	assign PCSRC = {Jump, Branch&Taken};
 	
 	// Mux3 (I0, I1, I2, Sel, Out)
-	Mux3 muxPC (PCADD4_F, DOUT0_D, JPC_D, PCSRC, NextPC);
+	Mux3 muxPC (PCADD4_F1, DOUT0_D, JPC_D, PCSRC, NextPC);
 		
-	// PC
+	// PC_Main
 	PC instPC (PCWrite, CLK, RSTN, NextPC, IADDR_o);
+	
+	// PCBuffer
+	PCBuffer InstPB(CLK, RSTN, IMRead, PCADD4_F1, PCADD4_F2);
 	
 	// IM
 	assign IREQ = IMRead;
@@ -108,7 +112,7 @@ module RISC_TOY (
 	assign INSTR_i = INSTR;
 	
 	// FD (Pipeline Register)
-	FD instFD (CLK, RSTN, FDWrite, INSTR_i, PCADD4_F, INSTR_o, PCADD4_D);
+	FD instFD (CLK, RSTN, FDWrite, INSTR_i, PCADD4_F2, INSTR_o, PCADD4_D);
 	
 // ID Stage
 	// INSTR Decode

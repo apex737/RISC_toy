@@ -24,4 +24,8 @@
 2) LINE 31을 R31에 LINK 
 3) LINE 59로 BRANCH
 
+9. Load_M, Load_W가 10 이면 
+- MW 레지스터를 stall + WBData bypassing
+
+
 

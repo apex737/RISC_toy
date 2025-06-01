@@ -35,12 +35,14 @@ Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
 Top level modules:
 	PC
 
-} {} {}} D:/Download/prj1_RISC_Toy/RISC_toy/RISC_TOY.v {0 {vlog -work work {D:\Download\prj1_RISC_Toy\RISC_toy\RISC_TOY.v}
+} {} {}} D:/Download/prj1_RISC_Toy/RISC_toy/PCBuffer.v {1 {vlog -work work {D:\Download\prj1_RISC_Toy\RISC_toy\PCBuffer.v}
 Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
--- Compiling module RISC_TOY
-** Error: D:\Download\prj1_RISC_Toy\RISC_toy\RISC_TOY.v(83): near "wire": syntax error, unexpected wire, expecting IDENTIFIER or TYPE_IDENTIFIER
+-- Compiling module PCBuffer
 
-} {4.0 5.0} {}} D:/Download/prj1_RISC_Toy/RISC_toy/Mux3.v {1 {vlog -work work D:/Download/prj1_RISC_Toy/RISC_toy/Mux3.v
+Top level modules:
+	PCBuffer
+
+} {} {}} D:/Download/prj1_RISC_Toy/RISC_toy/Mux3.v {1 {vlog -work work D:/Download/prj1_RISC_Toy/RISC_toy/Mux3.v
 Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
 -- Compiling module Mux3
 
@@ -95,6 +97,13 @@ Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
 
 Top level modules:
 	FD
+
+} {} {}} D:/Download/prj1_RISC_Toy/RISC_toy/MW.v {1 {vlog -work work {D:\Download\prj1_RISC_Toy\RISC_toy\MW.v}
+Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+-- Compiling module MW
+
+Top level modules:
+	MW
 
 } {} {}} D:/Download/prj1_RISC_Toy/RISC_toy/MuxSrc2.v {1 {vlog -work work D:/Download/prj1_RISC_Toy/RISC_toy/MuxSrc2.v
 Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
