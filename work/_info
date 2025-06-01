@@ -4,359 +4,341 @@ K3
 cModel Technology
 Z0 dD:\verilog_lecture_code\2020110401\test_FP
 vALU
-Z1 I`Wo]JW^k3?iLiMS3<_fgC1
+Z1 I9[097Z;XKeD@nmN:LVGmI1
 Z2 V`nn??ah62Fk98Wi`B8Nc81
 Z3 dD:\Download\prj1_RISC_Toy\RISC_toy
 Z4 w1748385903
-Z5 8ALU.v
-Z6 FALU.v
+Z5 8D:/Download/prj1_RISC_Toy/RISC_toy/ALU.v
+Z6 FD:/Download/prj1_RISC_Toy/RISC_toy/ALU.v
 L0 1
 Z7 OV;L;10.1d;51
 r1
 31
-Z8 !s108 1748648272.103000
-Z9 !s107 testbench.v|tb.v|model.v|SignExt.v|RISC_TOY.v|PC.v|MuxSrc2.v|Mux3.v|MW.v|Hazard_Detection.v|FD.v|EM.v|DE.v|Control.v|BranchTaken.v|ALU.v|
-Z10 !s90 -reportprogress|300|ALU.v|BranchTaken.v|Control.v|DE.v|EM.v|FD.v|Hazard_Detection.v|MW.v|Mux3.v|MuxSrc2.v|PC.v|RISC_TOY.v|SignExt.v|model.v|tb.v|testbench.v|
-o-O0
-Z11 n@a@l@u
-Z12 !s100 =nLLDgZzGe9Vzm[Og^D;01
+Z8 o-work work -O0
+Z9 n@a@l@u
+Z10 !s100 PcYXT^^F7ZX_57_YC[[dK2
+Z11 !s108 1748749040.672000
+Z12 !s107 D:/Download/prj1_RISC_Toy/RISC_toy/ALU.v|
+Z13 !s90 -reportprogress|300|-work|work|D:/Download/prj1_RISC_Toy/RISC_toy/ALU.v|
 !i10b 1
 !s85 0
 !s101 -O0
 vBranchTaken
-Z13 IRGOPYzb3]Gd7W2=G:=CBI1
-Z14 V]lm<L]lWb1boNSE:_QGlG1
+Z14 IF_>hV9SK>zFniJzM`59G?0
+Z15 V]lm<L]lWb1boNSE:_QGlG1
 R3
-Z15 w1748351342
-Z16 8BranchTaken.v
-Z17 FBranchTaken.v
+Z16 w1748351342
+Z17 8D:/Download/prj1_RISC_Toy/RISC_toy/BranchTaken.v
+Z18 FD:/Download/prj1_RISC_Toy/RISC_toy/BranchTaken.v
 L0 1
 R7
 r1
 31
 R8
-R9
-R10
-o-O0
-Z18 n@branch@taken
-Z19 !s100 17lOUkl346U6_<h5FXLE53
+Z19 n@branch@taken
+Z20 !s100 K;2TUe_M]Oz@@oa[5]ZaC1
+Z21 !s108 1748749040.852000
+Z22 !s107 D:/Download/prj1_RISC_Toy/RISC_toy/BranchTaken.v|
+Z23 !s90 -reportprogress|300|-work|work|D:/Download/prj1_RISC_Toy/RISC_toy/BranchTaken.v|
 !i10b 1
 !s85 0
 !s101 -O0
 vControl
-Z20 I0F2H4NnEP:WQ]khi5[<UC3
-Z21 VQT2QUPZCQQi@FBKB???D<3
+Z24 IKETSo@D^8bzATOk>ZXd<<3
+Z25 VQT2QUPZCQQi@FBKB???D<3
 R3
-Z22 w1748563296
-Z23 8Control.v
-Z24 FControl.v
+Z26 w1748563296
+Z27 8D:/Download/prj1_RISC_Toy/RISC_toy/Control.v
+Z28 FD:/Download/prj1_RISC_Toy/RISC_toy/Control.v
 L0 1
 R7
 r1
 31
 R8
-R9
-R10
-o-O0
-Z25 n@control
-Z26 !s100 OOhmhOXEBKacl9nz>JWkE1
+Z29 n@control
+Z30 !s100 ezUm[PhCEQbK12a`A9ZL20
+Z31 !s108 1748749041.023000
+Z32 !s107 D:/Download/prj1_RISC_Toy/RISC_toy/Control.v|
+Z33 !s90 -reportprogress|300|-work|work|D:/Download/prj1_RISC_Toy/RISC_toy/Control.v|
 !i10b 1
 !s85 0
 !s101 -O0
 vDE
-Z27 I_8Gd2cYGmJ]WYHcNUViUb3
-Z28 V3bGRL[f[JQPN4e8<FS9Pe3
+Z34 ITDZQ3QVb?[MoE8NU6ob]F0
+Z35 V3bGRL[f[JQPN4e8<FS9Pe3
 R3
-Z29 w1748604635
-8DE.v
-FDE.v
+Z36 w1748604635
+Z37 8D:/Download/prj1_RISC_Toy/RISC_toy/DE.v
+Z38 FD:/Download/prj1_RISC_Toy/RISC_toy/DE.v
 L0 1
 R7
 r1
 31
 R8
-R9
-R10
-o-O0
 n@d@e
-Z30 !s100 >BZ_0EajNB[Z>?4iKE:H<0
+Z39 !s100 I9PmSL<YheTEY`j4BTOV?2
+Z40 !s108 1748749041.195000
+Z41 !s107 D:/Download/prj1_RISC_Toy/RISC_toy/DE.v|
+Z42 !s90 -reportprogress|300|-work|work|D:/Download/prj1_RISC_Toy/RISC_toy/DE.v|
 !i10b 1
 !s85 0
 !s101 -O0
 vEM
-Z31 Ihi4G01d@0cTOWL;AZjl1M0
-Z32 V7jgzSOa5ZQ[<NBS3HPNd:1
+Z43 I`d8gOWch>IQJ1H83Lc8fI0
+Z44 V>CRM1IX[N;_m^>>OSeU6=2
 R3
-Z33 w1748604045
-8EM.v
-FEM.v
+Z45 w1748748627
+Z46 8D:\Download\prj1_RISC_Toy\RISC_toy\EM.v
+Z47 FD:\Download\prj1_RISC_Toy\RISC_toy\EM.v
 L0 1
 R7
 r1
 31
 R8
-R9
-R10
-o-O0
 n@e@m
-Z34 !s100 f<P=igOScBgcNNX6:NDnC0
+Z48 !s100 [:L2LanhB8N4d6_QAckT01
+Z49 !s108 1748749041.370000
+Z50 !s107 D:\Download\prj1_RISC_Toy\RISC_toy\EM.v|
+Z51 !s90 -reportprogress|300|-work|work|D:\Download\prj1_RISC_Toy\RISC_toy\EM.v|
 !i10b 1
 !s85 0
 !s101 -O0
 vFD
-Z35 IeO3X76jQXaIK4fCG:fXf13
-Z36 VZF8K[nSghP6=g`_[Uc_U?1
+Z52 Il5Y6bRVIldS^Y:Lj9onME3
+Z53 VZF8K[nSghP6=g`_[Uc_U?1
 R3
-Z37 w1748689466
-Z38 8D:\Download\prj1_RISC_Toy\RISC_toy\FD.v
-Z39 FD:\Download\prj1_RISC_Toy\RISC_toy\FD.v
+Z54 w1748689466
+Z55 8D:/Download/prj1_RISC_Toy/RISC_toy/FD.v
+Z56 FD:/Download/prj1_RISC_Toy/RISC_toy/FD.v
 L0 1
 R7
 r1
 31
-Z40 !s90 -reportprogress|300|-work|work|D:\Download\prj1_RISC_Toy\RISC_toy\FD.v|
-Z41 o-work work -O0
+R8
 n@f@d
-Z42 !s100 IQ@4]2Y<aoH[X:0o?n5Nk0
-Z43 !s108 1748689955.214000
-Z44 !s107 D:\Download\prj1_RISC_Toy\RISC_toy\FD.v|
+Z57 !s100 LES?ND[=8CJhC9g`lAzXT1
+Z58 !s108 1748749041.541000
+Z59 !s107 D:/Download/prj1_RISC_Toy/RISC_toy/FD.v|
+Z60 !s90 -reportprogress|300|-work|work|D:/Download/prj1_RISC_Toy/RISC_toy/FD.v|
 !i10b 1
 !s85 0
 !s101 -O0
 vHazard_Detection
-Z45 IFefaXXF9I?iCf@44P6hFz3
-Z46 Va=7z?:Y_9dz>98MN3FhXA0
+Z61 Ij^H<kk=c;;FSzlRVFUi4N0
+Z62 V_FULMkJdG44F1bHQhDQB;1
 R3
-Z47 w1748689476
-Z48 8D:\Download\prj1_RISC_Toy\RISC_toy\Hazard_Detection.v
-Z49 FD:\Download\prj1_RISC_Toy\RISC_toy\Hazard_Detection.v
+Z63 w1748749435
+Z64 8D:\Download\prj1_RISC_Toy\RISC_toy\Hazard_Detection.v
+Z65 FD:\Download\prj1_RISC_Toy\RISC_toy\Hazard_Detection.v
 L0 1
 R7
 r1
 31
-Z50 !s90 -reportprogress|300|-work|work|D:\Download\prj1_RISC_Toy\RISC_toy\Hazard_Detection.v|
-R41
-Z51 n@hazard_@detection
+Z66 !s90 -reportprogress|300|-work|work|D:\Download\prj1_RISC_Toy\RISC_toy\Hazard_Detection.v|
+R8
+Z67 n@hazard_@detection
+Z68 !s100 CP8L?TdbWAi^dI@5f]=>Z2
+Z69 !s108 1748749456.769000
+Z70 !s107 D:\Download\prj1_RISC_Toy\RISC_toy\Hazard_Detection.v|
 !i10b 1
-Z52 !s100 Gf:c[I@YM0iUf8Ik2D?;E1
 !s85 0
-Z53 !s108 1748689955.454000
-Z54 !s107 D:\Download\prj1_RISC_Toy\RISC_toy\Hazard_Detection.v|
 !s101 -O0
-vMux3
-Z55 IYW@0zONWCI@Ja539]Hd3o3
-Z56 Vz8?GK<>3LnC5N`2^FzA3f1
+vMemBuffer
+Z71 I`SN]N;AKQXOOGm>M0=Qg@0
+Z72 VJ1>kN5W=QPbXVFK1gAFjz1
 R3
-Z57 w1747996991
-Z58 8Mux3.v
-Z59 FMux3.v
+Z73 w1748748768
+Z74 8D:\Download\prj1_RISC_Toy\RISC_toy\MemBuffer.v
+Z75 FD:\Download\prj1_RISC_Toy\RISC_toy\MemBuffer.v
 L0 1
 R7
 r1
 31
 R8
-R9
-R10
-o-O0
-Z60 n@mux3
-Z61 !s100 ^0EIAbTJW4?YSlYZ>b`]Q1
+Z76 n@mem@buffer
+Z77 !s100 T8:n>KcHZbXdB_aEa4W391
+Z78 !s108 1748749043.247000
+Z79 !s107 D:\Download\prj1_RISC_Toy\RISC_toy\MemBuffer.v|
+Z80 !s90 -reportprogress|300|-work|work|D:\Download\prj1_RISC_Toy\RISC_toy\MemBuffer.v|
+!i10b 1
+!s85 0
+!s101 -O0
+vMux3
+Z81 IPlF6JZNnIi4UVj>CGkV:H2
+Z82 Vz8?GK<>3LnC5N`2^FzA3f1
+R3
+Z83 w1747996991
+Z84 8D:/Download/prj1_RISC_Toy/RISC_toy/Mux3.v
+Z85 FD:/Download/prj1_RISC_Toy/RISC_toy/Mux3.v
+L0 1
+R7
+r1
+31
+R8
+Z86 n@mux3
+Z87 !s100 4bUG?1KK?eBL0l]3>QPK@3
+Z88 !s108 1748749042.083000
+Z89 !s107 D:/Download/prj1_RISC_Toy/RISC_toy/Mux3.v|
+Z90 !s90 -reportprogress|300|-work|work|D:/Download/prj1_RISC_Toy/RISC_toy/Mux3.v|
 !i10b 1
 !s85 0
 !s101 -O0
 vMuxSrc2
-Z62 IPSkHD6HE6?:JdNS_InF=:0
-Z63 V:ZPcSJ^Ao9]IB3P6BonRS2
+Z91 IQig>dF1neT^h5mH4>d0ba3
+Z92 V:ZPcSJ^Ao9]IB3P6BonRS2
 R3
-Z64 w1748001878
-Z65 8MuxSrc2.v
-Z66 FMuxSrc2.v
+Z93 w1748001878
+Z94 8D:/Download/prj1_RISC_Toy/RISC_toy/MuxSrc2.v
+Z95 FD:/Download/prj1_RISC_Toy/RISC_toy/MuxSrc2.v
 L0 1
 R7
 r1
 31
 R8
-R9
-R10
-o-O0
-Z67 n@mux@src2
-Z68 !s100 KF75j5[JiMJBY_nAC6KLX3
+Z96 n@mux@src2
+Z97 !s100 NAYO]XXaHSQ<:_oeXXoXE1
+Z98 !s108 1748749042.238000
+Z99 !s107 D:/Download/prj1_RISC_Toy/RISC_toy/MuxSrc2.v|
+Z100 !s90 -reportprogress|300|-work|work|D:/Download/prj1_RISC_Toy/RISC_toy/MuxSrc2.v|
 !i10b 1
 !s85 0
 !s101 -O0
 vMW
-Z69 IAYOHi_kcAH:5]=]XP?glP2
-Z70 VbO@Tz7]j`:3<Qdd<JT=ML0
+!i10b 1
+!s100 Ql0EoHh?E9MgT>@PbT:S62
+I[[6O0o4bZh^fOWB2ZV5TR2
+VW:Mg]2JlFfD=`:dc]HDXz3
 R3
-Z71 w1748597223
-8MW.v
-FMW.v
+w1748751026
+Z101 8D:\Download\prj1_RISC_Toy\RISC_toy\MW.v
+Z102 FD:\Download\prj1_RISC_Toy\RISC_toy\MW.v
+L0 1
+R7
+r1
+!s85 0
+31
+!s108 1748751030.413000
+!s107 D:\Download\prj1_RISC_Toy\RISC_toy\MW.v|
+Z103 !s90 -reportprogress|300|-work|work|D:\Download\prj1_RISC_Toy\RISC_toy\MW.v|
+!s101 -O0
+R8
+n@m@w
+vPC
+Z104 I0fEX]@PDIgO09g?ige[1B3
+Z105 VV^cjb4ecah3`@PM61M@lV2
+R3
+Z106 w1748676771
+Z107 8D:/Download/prj1_RISC_Toy/RISC_toy/PC.v
+Z108 FD:/Download/prj1_RISC_Toy/RISC_toy/PC.v
 L0 1
 R7
 r1
 31
 R8
-R9
-R10
-o-O0
-n@m@w
-Z72 !s100 @LDe=ZYfCL0@nBiN]z8A]0
-!i10b 1
-!s85 0
-!s101 -O0
-vPC
-Z73 IW:GXfZfoaD?WJgiWT=VC62
-Z74 VV^cjb4ecah3`@PM61M@lV2
-R3
-Z75 w1748676771
-Z76 8D:\Download\prj1_RISC_Toy\RISC_toy\PC.v
-Z77 FD:\Download\prj1_RISC_Toy\RISC_toy\PC.v
-L0 1
-R7
-r1
-31
-R41
 n@p@c
-Z78 !s100 aW2mhYH0d]mRbX07f^oZF2
-Z79 !s108 1748676981.476000
-Z80 !s107 D:\Download\prj1_RISC_Toy\RISC_toy\PC.v|
-Z81 !s90 -reportprogress|300|-work|work|D:\Download\prj1_RISC_Toy\RISC_toy\PC.v|
+Z109 !s100 eNCTfLPZR;Bj6<:BX5]ok2
+Z110 !s108 1748749042.575000
+Z111 !s107 D:/Download/prj1_RISC_Toy/RISC_toy/PC.v|
+Z112 !s90 -reportprogress|300|-work|work|D:/Download/prj1_RISC_Toy/RISC_toy/PC.v|
 !i10b 1
 !s85 0
 !s101 -O0
 vREGFILE
-Z82 IBgII`9hC[iNi;^Lz<g7d@2
-Z83 V@a1VA2@cI6B[:a39R4GF12
+Z113 IdVaN:C6m:A2RQNhnYAW5>2
+Z114 V@a1VA2@cI6B[:a39R4GF12
 R3
-Z84 w1748431537
-Z85 8model.v
-Z86 Fmodel.v
+Z115 w1748749700
+Z116 8D:\Download\prj1_RISC_Toy\RISC_toy\model.v
+Z117 FD:\Download\prj1_RISC_Toy\RISC_toy\model.v
 L0 29
 R7
 r1
 31
+Z118 !s108 1748749704.383000
+Z119 !s107 D:\Download\prj1_RISC_Toy\RISC_toy\model.v|
+Z120 !s90 -reportprogress|300|-work|work|D:\Download\prj1_RISC_Toy\RISC_toy\model.v|
 R8
-R9
-R10
-o-O0
-Z87 n@r@e@g@f@i@l@e
-Z88 !s100 G?9I5_RMm;G`KeZ7`V6>c2
+Z121 n@r@e@g@f@i@l@e
+Z122 !s100 [Z[20c^6mKXYiY0DS2hQN1
 !i10b 1
 !s85 0
 !s101 -O0
 vRISC_TOY
-!i10b 1
-!s100 7R?j7Mi1RdoS]ZM;?9>>H3
-IGd@kJ5JQJQSdjl4^74cZI2
-Z89 VV84Yd`SlROXnY?UjB@b6O2
+Z123 IL@@ZL327X8AcE?L?Lfd_l1
+Z124 VV84Yd`SlROXnY?UjB@b6O2
 R3
-w1748689475
-Z90 8D:\Download\prj1_RISC_Toy\RISC_toy\RISC_TOY.v
-Z91 FD:\Download\prj1_RISC_Toy\RISC_toy\RISC_TOY.v
+Z125 w1748750679
+Z126 8D:\Download\prj1_RISC_Toy\RISC_toy\RISC_TOY.v
+Z127 FD:\Download\prj1_RISC_Toy\RISC_toy\RISC_TOY.v
 L0 14
 R7
 r1
-!s85 0
 31
-!s108 1748689955.634000
-!s107 D:\Download\prj1_RISC_Toy\RISC_toy\RISC_TOY.v|
-Z92 !s90 -reportprogress|300|-work|work|D:\Download\prj1_RISC_Toy\RISC_toy\RISC_TOY.v|
+Z128 !s90 -reportprogress|300|-work|work|D:\Download\prj1_RISC_Toy\RISC_toy\RISC_TOY.v|
+R8
+Z129 n@r@i@s@c_@t@o@y
+Z130 !s100 ZfBl^b9D`X8YP>RokJhTB3
+Z131 !s108 1748750687.399000
+Z132 !s107 D:\Download\prj1_RISC_Toy\RISC_toy\RISC_TOY.v|
+!i10b 1
+!s85 0
 !s101 -O0
-R41
-Z93 n@r@i@s@c_@t@o@y
 vSignExt
-Z94 Ib>5lUjES:ii`eKDQ@Q6?>0
-Z95 V=2]AAZC?lnFjV8aU5nXfz3
+Z133 ID9;SN@?j;4[oWQ`1L5hZM3
+Z134 V=2]AAZC?lnFjV8aU5nXfz3
 R3
-Z96 w1748341052
-Z97 8SignExt.v
-Z98 FSignExt.v
+Z135 w1748341052
+Z136 8D:/Download/prj1_RISC_Toy/RISC_toy/SignExt.v
+Z137 FD:/Download/prj1_RISC_Toy/RISC_toy/SignExt.v
 L0 1
 R7
 r1
 31
 R8
-R9
-R10
-o-O0
-Z99 n@sign@ext
-Z100 !s100 ;h:dgQc]=X:[o:ZTUSd_@1
+Z138 n@sign@ext
+Z139 !s100 Gin8iZ<h_GJ199[BV_6AS0
+Z140 !s108 1748749042.914000
+Z141 !s107 D:/Download/prj1_RISC_Toy/RISC_toy/SignExt.v|
+Z142 !s90 -reportprogress|300|-work|work|D:/Download/prj1_RISC_Toy/RISC_toy/SignExt.v|
 !i10b 1
 !s85 0
 !s101 -O0
 vSRAM
-Z101 IDS`F]@H>X6jZ6RX2GgINk2
-Z102 VY]VgQFPhm08SQ_fQV4C2`2
+Z143 I;O^>oNPeC;zV_NfmMIbNU1
+Z144 VY]VgQFPhm08SQ_fQV4C2`2
 R3
-R84
-R85
-R86
+R115
+R116
+R117
 L0 99
 R7
 r1
 31
+R118
+R119
+R120
 R8
-R9
-R10
-o-O0
-Z103 n@s@r@a@m
-Z104 !s100 HNTUnNCEi7lNecCSc45o=1
+Z145 n@s@r@a@m
+Z146 !s100 V4C<`oT2G4Ro>QaI1O>XK3
 !i10b 1
 !s85 0
 !s101 -O0
 vtb
-Z105 I@Y4_QT0JYZ^1Db<lAAm0Z1
-Z106 V;a17Z]cUeE52g^0<51>Yf1
+Z147 I@Y4_QT0JYZ^1Db<lAAm0Z1
+Z148 V;a17Z]cUeE52g^0<51>Yf1
 R3
-Z107 w1748677018
-Z108 8D:/Download/prj1_RISC_Toy/RISC_toy/tb.v
-Z109 FD:/Download/prj1_RISC_Toy/RISC_toy/tb.v
+Z149 w1748677018
+Z150 8D:/Download/prj1_RISC_Toy/RISC_toy/tb.v
+Z151 FD:/Download/prj1_RISC_Toy/RISC_toy/tb.v
 L0 1
-R7
-r1
-31
-R41
-Z110 !s100 I<cP9iTA3[P@cLi1FQ]_W3
-Z111 !s108 1748677042.739000
-Z112 !s107 D:/Download/prj1_RISC_Toy/RISC_toy/tb.v|
-Z113 !s90 -reportprogress|300|-work|work|D:/Download/prj1_RISC_Toy/RISC_toy/tb.v|
-!i10b 1
-!s85 0
-!s101 -O0
-vtest_always_star
-Z114 I5iNGJ>7o]MkS_53HzD=I]3
-Z115 Vb[`kFfFioZEXA7o7KDO6A0
-R3
-Z116 w1748663705
-Z117 8D:\Download\prj1_RISC_Toy\RISC_toy\test_always.v
-Z118 FD:\Download\prj1_RISC_Toy\RISC_toy\test_always.v
-L0 1
-R7
-r1
-31
-Z119 !s90 -reportprogress|300|-work|work|D:\Download\prj1_RISC_Toy\RISC_toy\test_always.v|
-R41
-Z120 !s100 P7kAjJYE@><H5CIn1X=GY3
-Z121 !s108 1748663708.437000
-Z122 !s107 D:\Download\prj1_RISC_Toy\RISC_toy\test_always.v|
-!i10b 1
-!s85 0
-!s101 -O0
-vtestbench
-Z123 I<@n6]A034]JAHdY=_@EJk2
-Z124 VojMP24flhnl`CVoE2CJCR0
-R3
-Z125 w1748517540
-Z126 8testbench.v
-Z127 Ftestbench.v
-L0 11
 R7
 r1
 31
 R8
-R9
-R10
-o-O0
-Z128 !s100 g?dD9]=BEWbTeVak>7TTG2
+Z152 !s100 I<cP9iTA3[P@cLi1FQ]_W3
+Z153 !s108 1748749043.092000
+Z154 !s107 D:/Download/prj1_RISC_Toy/RISC_toy/tb.v|
+Z155 !s90 -reportprogress|300|-work|work|D:/Download/prj1_RISC_Toy/RISC_toy/tb.v|
 !i10b 1
 !s85 0
 !s101 -O0

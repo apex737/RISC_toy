@@ -119,8 +119,8 @@ module SRAM #(parameter BW = 32, AW = 10, ENTRY = 1024, WRITE = 0, MEM_FILE="mem
     begin
         if (~CSN)
         begin
-            if (WEN)    outline    <= ram[A];
-            else        ram[A]    <= DI;
+            if (WEN)    outline    <= ram[A]; // READ (DRW = 0)
+            else        ram[A]    <= DI; 			// WRITE (DRW = 1)
         end
     end
 

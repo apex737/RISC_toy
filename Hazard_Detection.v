@@ -1,17 +1,19 @@
 module Hazard_Detection(
     input [4:0] RA0_D, RA1_D, RA0_E, RA1_E,   
     input RS1Used_D, RS2Used_D, RS1Used_E, RS2Used_E, 
-    input [4:0] WA_E, WA_M, WA_W,     
-    input Load_E, Load_M,          
-    input WEN_M, WEN_W,    
+    input [4:0] WA_E, WA_M1, WA_W,     
+    input Load_E, Load_M1,
+    input WEN_M1, WEN_W,    
 		input Jump, Branch, Taken,
-    output reg PCWrite, IMRead, FDWrite, DEFlush,
+    output reg PCWrite, IMRead, FDWrite, DEFlush, 
     output reg [1:0] FW1, FW2    
 );
 
-
 always@* begin
-	PCWrite = 1; IMRead = 1; FDWrite = 1; DEFlush = 0; 
+	PCWrite = 1; 
+	IMRead = 1; 
+	FDWrite = 1; 
+	DEFlush = 0;
 	FW1 = 2'd0; FW2 = 2'd0; 
 	// Branch & Jump
 	if(Jump || Branch && Taken) IMRead = 0; 

@@ -1,4 +1,4 @@
-D:/Download/prj1_RISC_Toy/RISC_toy/model.v {1 {vlog -work work D:/Download/prj1_RISC_Toy/RISC_toy/model.v
+D:/Download/prj1_RISC_Toy/RISC_toy/model.v {1 {vlog -work work {D:\Download\prj1_RISC_Toy\RISC_toy\model.v}
 Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
 -- Compiling module REGFILE
 -- Compiling module SRAM
@@ -28,14 +28,19 @@ Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
 Top level modules:
 	ALU
 
-} {} {}} D:/Download/prj1_RISC_Toy/RISC_toy/PC.v {1 {vlog -work work {D:\Download\prj1_RISC_Toy\RISC_toy\PC.v}
+} {} {}} D:/Download/prj1_RISC_Toy/RISC_toy/PC.v {1 {vlog -work work D:/Download/prj1_RISC_Toy/RISC_toy/PC.v
 Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
 -- Compiling module PC
 
 Top level modules:
 	PC
 
-} {} {}} D:/Download/prj1_RISC_Toy/RISC_toy/Mux3.v {1 {vlog -work work D:/Download/prj1_RISC_Toy/RISC_toy/Mux3.v
+} {} {}} D:/Download/prj1_RISC_Toy/RISC_toy/RISC_TOY.v {0 {vlog -work work {D:\Download\prj1_RISC_Toy\RISC_toy\RISC_TOY.v}
+Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+-- Compiling module RISC_TOY
+** Error: D:\Download\prj1_RISC_Toy\RISC_toy\RISC_TOY.v(83): near "wire": syntax error, unexpected wire, expecting IDENTIFIER or TYPE_IDENTIFIER
+
+} {4.0 5.0} {}} D:/Download/prj1_RISC_Toy/RISC_toy/Mux3.v {1 {vlog -work work D:/Download/prj1_RISC_Toy/RISC_toy/Mux3.v
 Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
 -- Compiling module Mux3
 
@@ -49,12 +54,33 @@ Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
 Top level modules:
 	tb
 
+} {} {}} D:/Download/prj1_RISC_Toy/RISC_toy/Hazard_Detection.v {1 {vlog -work work {D:\Download\prj1_RISC_Toy\RISC_toy\Hazard_Detection.v}
+Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+-- Compiling module Hazard_Detection
+
+Top level modules:
+	Hazard_Detection
+
+} {} {}} D:/Download/prj1_RISC_Toy/RISC_toy/MemBuffer.v {1 {vlog -work work {D:\Download\prj1_RISC_Toy\RISC_toy\MemBuffer.v}
+Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+-- Compiling module MemBuffer
+
+Top level modules:
+	MemBuffer
+
 } {} {}} D:/Download/prj1_RISC_Toy/RISC_toy/DE.v {1 {vlog -work work D:/Download/prj1_RISC_Toy/RISC_toy/DE.v
 Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
 -- Compiling module DE
 
 Top level modules:
 	DE
+
+} {} {}} D:/Download/prj1_RISC_Toy/RISC_toy/EM.v {1 {vlog -work work {D:\Download\prj1_RISC_Toy\RISC_toy\EM.v}
+Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+-- Compiling module EM
+
+Top level modules:
+	EM
 
 } {} {}} D:/Download/prj1_RISC_Toy/RISC_toy/SignExt.v {1 {vlog -work work D:/Download/prj1_RISC_Toy/RISC_toy/SignExt.v
 Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
@@ -63,12 +89,12 @@ Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
 Top level modules:
 	SignExt
 
-} {} {}} D:/Download/prj1_RISC_Toy/RISC_toy/EM.v {1 {vlog -work work D:/Download/prj1_RISC_Toy/RISC_toy/EM.v
+} {} {}} D:/Download/prj1_RISC_Toy/RISC_toy/FD.v {1 {vlog -work work D:/Download/prj1_RISC_Toy/RISC_toy/FD.v
 Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
--- Compiling module EM
+-- Compiling module FD
 
 Top level modules:
-	EM
+	FD
 
 } {} {}} D:/Download/prj1_RISC_Toy/RISC_toy/MuxSrc2.v {1 {vlog -work work D:/Download/prj1_RISC_Toy/RISC_toy/MuxSrc2.v
 Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
@@ -76,12 +102,5 @@ Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
 
 Top level modules:
 	MuxSrc2
-
-} {} {}} D:/Download/prj1_RISC_Toy/RISC_toy/MW.v {1 {vlog -work work D:/Download/prj1_RISC_Toy/RISC_toy/MW.v
-Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
--- Compiling module MW
-
-Top level modules:
-	MW
 
 } {} {}}

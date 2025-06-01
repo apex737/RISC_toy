@@ -50,7 +50,7 @@ module RISC_TOY (
 	// DE (Pipeline Register)
 	wire DEFlush;
 	wire [1:0] SelWB_E;
-	wire WEN_E, Load_E, Load_M;
+	wire WEN_E, Load_E;
 	wire DRW_E, DREQ_E, Sel1_E, RS1Used_E, RS2Used_E;
 	wire [2:0] Sel2_E;
   wire [3:0] ALUOP_E;
@@ -67,12 +67,18 @@ module RISC_TOY (
 	wire [1:0] FW1, FW2;
 	wire [31:0] ALUOUT_E;
 	
-	// MEM Stage
-	wire WEN_M, DRW_M, DREQ_M;
-	wire [1:0] SelWB_M;
-	wire [4:0] WA_M;
-	wire [31:0]	PCADD4_M, ALUOUT_M, DOUT0_M, LoadData_M;
+	// M1 Stage
+	wire WEN_M1, Load_M1, DRW_M1, DREQ_M1;
+	wire [1:0] SelWB_M1;
+	wire [4:0] WA_M1;
+	wire [31:0]	PCADD4_M1, ALUOUT_M1, DOUT0_M, LoadData_M;
 
+	// M2 Stage
+	wire WEN_M2, DRW_M2, DREQ_M2;
+	wire [1:0] SelWB_M2;
+	wire [4:0] WA_M2;
+	wire [31:0]	PCADD4_M2, ALUOUT_M2;
+	
 	// WB Stage
 	wire WEN_W;
 	wire [1:0] SelWB_W; 
@@ -185,8 +191,8 @@ module RISC_TOY (
 		Sel2_E, DOUT1_E, Iext_E, shamtExt_E, zeroExt_E, JPC_E, SRC2
 	);
 	
-	Mux3 muxFWD1(SRC1, ALUOUT_M, WBData, FW1, ALUSRC1);
-	Mux3 muxFWD2(SRC2, ALUOUT_M, WBData, FW2, ALUSRC2);
+	Mux3 muxFWD1(SRC1, ALUOUT_M1, WBData, FW1, ALUSRC1);
+	Mux3 muxFWD2(SRC2, ALUOUT_M1, WBData, FW2, ALUSRC2);
 
 	// ALU
 	ALU InstALU(ALUOP_E, ALUSRC1, ALUSRC2, ALUOUT_E);
@@ -194,51 +200,64 @@ module RISC_TOY (
 	// EM (Pipeline Register)
 	EM InstEM(
 		// Input
-		CLK, RSTN, 
+		CLK, RSTN,
 		WEN_E, DRW_E, DREQ_E, Load_E,
 		SelWB_E,
 		WA_E, 
 		PCADD4_E, ALUOUT_E, DOUT0_E, 
 		// Output
-		WEN_M, DRW_M, DREQ_M, Load_M,
-		SelWB_M,
-		WA_M,
-		PCADD4_M, ALUOUT_M, DOUT0_M
+		WEN_M1, DRW_M1, DREQ_M2, Load_M1,
+		SelWB_M1,
+		WA_M1,
+		PCADD4_M1, ALUOUT_M1, DOUT0_M
 	);
 	
-// MEM Stage
+// M1 Stage
 	// DM
-	assign DADDR = ALUOUT_M;
+	assign DADDR = ALUOUT_M1;
 	assign DWDATA = DOUT0_M;
-	assign DREQ = DREQ_M;
-	assign DRW = DREQ_M;
+	assign DREQ = DREQ_M2;
+	assign DRW = DRW_M1;
 	assign LoadData_M = DRDATA;
-	
+
+// M2 Stage
+	MemBuffer InstMB(
+		CLK, RSTN,
+		SelWB_M1,
+		WEN_M1,
+		ALUOUT_M1, PCADD4_M1,		
+		WA_M1,
+		SelWB_M2,
+		WEN_M2, 
+		ALUOUT_M2, PCADD4_M2,
+		WA_M2
+	);
 	// MW (Pipeline Register)
 		MW InstMW(
 			// Input
-			CLK, RSTN,
-			SelWB_M,
-			WEN_M,  
-			ALUOUT_M, LoadData_M, PCADD4_M,
-			WA_M,
+			.CLK(CLK), .RSTN(RSTN),
+			.SelWB_M2(SelWB_M2),
+			.WEN_M2(WEN_M2),
+			.ALUOUT_M2(ALUOUT_M2), .LoadData_M(LoadData_M), .PCADD4_M2(PCADD4_M2),
+			.WA_M2(WA_M2),
 			// Output
-			SelWB_W,
-			WEN_W,
-			ALUOUT_W, LoadData_W, PCADD4_W,
-			WA_W
+			.SelWB_W(SelWB_W),
+			.WEN_W(WEN_W),
+			.ALUOUT_W(ALUOUT_W), .LoadData_W(LoadData_W), .PCADD4_W(PCADD4_W),
+			.WA_W(WA_W)
 		);
 
 // WB Stage
 	// Mux3 (I0, I1, I2, Sel, Out)
 	Mux3 muxWB (ALUOUT_W, LoadData_W, PCADD4_W, SelWB_W, WBData);
+
 	Hazard_Detection InstHD (
 		.RA0_D(RA0_D), .RA1_D(RA1_D), .RA0_E(RA0_E), .RA1_E(RA1_E),
 		.RS1Used_D(RS1Used_D), .RS2Used_D(RS2Used_D),
 		.RS1Used_E(RS1Used_E), .RS2Used_E(RS2Used_E),
-		.WA_E(WA_E), .WA_M(WA_M), .WA_W(WA_W),
-		.Load_E(Load_E), .Load_M(Load_M),
-		.WEN_M(WEN_M), .WEN_W(WEN_W), .Jump(Jump), .Branch(Branch), .Taken(Taken),
+		.WA_E(WA_E), .WA_M1(WA_M1), .WA_W(WA_W),
+		.Load_E(Load_E), .Load_M1(Load_M1),
+		.WEN_M1(WEN_M1), .WEN_W(WEN_W), .Jump(Jump), .Branch(Branch), .Taken(Taken),
 		// output
 		.PCWrite(PCWrite), .IMRead(IMRead), .FDWrite(FDWrite), .DEFlush(DEFlush),
 		.FW1(FW1), .FW2(FW2)
