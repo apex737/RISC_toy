@@ -64,6 +64,14 @@ AC7E0004 // LD : R17 <-- M[1] = 10
 AC86000B // LD : R18 <-- M[2] = 2
 B13FFF04 // LDR : R4 <-- M[2] = 2
 A77FFF08 // STR : R29 = 228 --> M[4] ///////// HAZARD TEST START
+00001000 // ADD R0, R0, R1 : r0 = 10 + 0    
+00402000 // ADD R1, R0, R2 : r1 = 10 - 1    // TYPE1
+00803000 // ADD R2, R0, R3 : r2 = 10 - 3    // TYPE2
+00C04000 // ADD R3, R0, R4  : r3 = 10 + 2  // TYPE3 
+01005000 // ADD R4, R0, R5 : r4 = 10 + 4   // WB STALL
+B17FFEF0 // LDR R5 <-- M[4] = 228  	// Load-Use Hazard
+098A000A // ADDI R6, R5, #10		// Type1-stall
+09CA000F // ADDI R7, R5, #15		// Type2-stall + 1 WB- stall
 
 
 

@@ -195,8 +195,9 @@ module RISC_TOY (
 		Sel2_E, DOUT1_E, Iext_E, shamtExt_E, zeroExt_E, JPC_E, SRC2
 	);
 	
-	Mux3 muxFWD1(SRC1, ALUOUT_M1, WBData, FW1, ALUSRC1);
-	Mux3 muxFWD2(SRC2, ALUOUT_M1, WBData, FW2, ALUSRC2);
+	// Mux4 (I0, I1, I2, I3, Sel, Out)
+	Mux4 muxFWD1(SRC1, ALUOUT_M1, ALUOUT_M2, WBData, FW1, ALUSRC1);
+	Mux4 muxFWD2(SRC2, ALUOUT_M1, ALUOUT_M2, WBData, FW2, ALUSRC2);
 
 	// ALU
 	ALU InstALU(ALUOP_E, ALUSRC1, ALUSRC2, ALUOUT_E);
@@ -259,9 +260,10 @@ module RISC_TOY (
 		.RA0_D(RA0_D), .RA1_D(RA1_D), .RA0_E(RA0_E), .RA1_E(RA1_E),
 		.RS1Used_D(RS1Used_D), .RS2Used_D(RS2Used_D),
 		.RS1Used_E(RS1Used_E), .RS2Used_E(RS2Used_E),
-		.WA_E(WA_E), .WA_M1(WA_M1), .WA_W(WA_W),
+		.WA_E(WA_E), .WA_M1(WA_M1), .WA_M2(WA_M2), .WA_W(WA_W),
 		.Load_E(Load_E), .Load_M1(Load_M1),
-		.WEN_M1(WEN_M1), .WEN_W(WEN_W), .Jump(Jump), .Branch(Branch), .Taken(Taken),
+		.WEN_M1(WEN_M1), .WEN_M2(WEN_M2), .WEN_W(WEN_W), 
+		.Jump(Jump), .Branch(Branch), .Taken(Taken),
 		// output
 		.PCWrite(PCWrite), .IMRead(IMRead), .FDWrite(FDWrite), .DEFlush(DEFlush),
 		.FW1(FW1), .FW2(FW2)
