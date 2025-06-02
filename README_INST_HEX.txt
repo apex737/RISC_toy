@@ -1,4 +1,4 @@
-// NOTE. Request_PC = 4 * (LINE - 1), CurrentPC = Request_PC + 4
+// Request_PC = 4 * (LINE - 1), CurrentPC = Request_PC + 4
 // EX. 57번째 줄 -> Request_PC = 216, CurrentPC = 220
 // JUMP, BRANCH&TAKEN 상황이면 IMREAD = 0;
 - DELAY SLOT 다음 명령어가 들어오지 못하도록함
